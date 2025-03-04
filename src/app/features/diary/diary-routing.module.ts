@@ -13,4 +13,4 @@ export const routes: Routes = [
 @NgModule({
   imports: [NativeScriptRouterModule.forChild(routes)]
 })
-export class DiaryRoutingComponent { }
+export class DiaryRoutingModule { }

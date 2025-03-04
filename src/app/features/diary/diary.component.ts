@@ -1,11 +1,12 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, NO_ERRORS_SCHEMA } from "@angular/core";
 import { diaryStore } from "../../models/diary.store";
 import { NativeScriptCommonModule, RouterExtensions } from "@nativescript/angular";
 
 @Component({
+  moduleId: module.id,
+  standalone: false,
   selector: "diary",
   templateUrl: "./diary.component.html",
-  imports: [NativeScriptCommonModule]
 })
 export class DiaryComponent {
   diaryStore = inject(diaryStore);

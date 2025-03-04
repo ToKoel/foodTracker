@@ -7,12 +7,13 @@ export const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
   {
     path: "home",
-    loadComponent: () =>
-      import("./features/diary/diary.component").then(m => m.DiaryComponent)
+    loadChildren: () =>
+      import("./features/diary/diary.module").then(m => m.DiaryModule)
   },
   {
     path: "add-entry",
-    loadComponent: () => import("./features/addentry/add-entry.component").then(m => m.AddEntryComponent)
+    loadComponent: () =>
+      import("./features/addentry/add-entry.module").then(m => m.AddEntryModule)
   }
 ];
 

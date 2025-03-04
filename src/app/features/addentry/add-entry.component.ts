@@ -1,12 +1,13 @@
 import { Component, inject } from "@angular/core";
-import { NativeScriptCommonModule, RouterExtensions } from "@nativescript/angular";
+import { RouterExtensions } from "@nativescript/angular";
 import { diaryStore } from "../../models/diary.store";
 import { DiaryEntry } from "../../models/diary-entry.model";
 
 @Component({
+  moduleId: module.id,
   selector: "app-add-entry",
   templateUrl: "./add-entry.component.html",
-  imports: [NativeScriptCommonModule],
+  standalone: false,
 })
 export class AddEntryComponent {
   foodInput: string = "";
@@ -26,7 +27,7 @@ export class AddEntryComponent {
     };
     this.diaryStore.addEntry(newEntry);
 
-    this.router.navigate(["/"]);
+    this.router.navigate([""]);
   }
 }
 
