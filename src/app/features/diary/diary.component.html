@@ -1,0 +1,14 @@
+<ActionBar title="Food Tracker">
+  <Button text="Add Entry" (tap)="navigateToAddEntry()"></Button>
+</ActionBar>
+
+<GridLayout rows="auto, *">
+  <ListView [items]="diaryStore.diaryEntries()">
+  <ng-template let-item="item" let-i="index">
+    <GridLayout>
+      <label [text]="item.id"></label>
+    </GridLayout>
+  </ng-template>
+</ListView>
+</GridLayout>
+

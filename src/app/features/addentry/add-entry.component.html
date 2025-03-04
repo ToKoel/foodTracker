@@ -1,0 +1,9 @@
+<ActionBar [title]="Add entry"></ActionBar>
+
+<StackLayout>
+  <TextField [(ngModel)]="foodInput" hint="Enter food items, separated by commas"></TextField>
+  <TextField [(ngModel)]="drinksInput" hint="Enter drinks, separated by commas"></TextField>
+  <TextView [(ngModel)]="notesInput" hint="Notes on sleep, stomach ache, etc."></TextView>
+  <Button text="Save Entry" (tap)="saveEntry()"></Button>
+</StackLayout>
+
