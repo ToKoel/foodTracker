@@ -12,7 +12,7 @@ export const routes: Routes = [
   },
   {
     path: "add-entry",
-    loadComponent: () =>
+    loadChildren: () =>
       import("./features/addentry/add-entry.module").then(m => m.AddEntryModule)
   }
 ];
