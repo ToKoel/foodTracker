@@ -7,4 +7,4 @@ import { PageRouterOutlet } from '@nativescript/angular';
   imports: [PageRouterOutlet],
   schemas: [NO_ERRORS_SCHEMA],
 })
-export class AppComponent {}
+export class AppComponent { }

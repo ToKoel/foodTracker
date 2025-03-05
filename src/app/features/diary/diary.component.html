@@ -1,5 +1,7 @@
 <ActionBar title="Food Tracker">
-  <Button text="Add Entry" (tap)="navigateToAddEntry()"></Button>
+    <ActionItem (tap)="navigateToAddEntry()" ios.position="right">
+    <Label class="fas" style="margin-top: 10px" text="&#xf067;"></Label>
+    </ActionItem>
 </ActionBar>
 
 <GridLayout rows="auto, *">
