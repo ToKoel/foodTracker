@@ -7,6 +7,7 @@ import { NativeScriptCommonModule, RouterExtensions } from "@nativescript/angula
   standalone: false,
   selector: "diary",
   templateUrl: "./diary.component.html",
+  styleUrl: "./diary.component.css"
 })
 export class DiaryComponent {
   diaryStore = inject(diaryStore);

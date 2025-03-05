@@ -3,7 +3,23 @@
 <StackLayout>
   <TextField [(ngModel)]="foodInput" hint="Enter food items, separated by commas"></TextField>
   <TextField [(ngModel)]="drinksInput" hint="Enter drinks, separated by commas"></TextField>
-  <TextView [(ngModel)]="notesInput" hint="Notes on sleep, stomach ache, etc."></TextView>
+  <TextField [(ngModel)]="medication" hint="Enter medication, separated by commas"></TextField>
+  <Label [text]="'Rate your sleep quality: ' + sleepQuality" class="h2"></Label>
+  <Slider
+    minValue="0"
+    value="5"
+    maxValue="10"
+    step="1"
+    (valueChange)="onSleepSliderChange($event)"
+    ></Slider>
+  <Label [text]="'Rate stomach pain: ' + stomach" class="h2"></Label>
+  <Slider
+    minValue="0"
+    value="5"
+    maxValue="10"
+    step="1"
+    (valueChange)="onStomachSliderChange($event)"
+    ></Slider>
   <Button text="Save Entry" (tap)="saveEntry()"></Button>
 </StackLayout>
 
