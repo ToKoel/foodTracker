@@ -5,10 +5,10 @@
 </ActionBar>
 
 <GridLayout rows="auto, *">
-  <ListView [items]="diaryStore.diaryView()">
+  <ListView [items]="diaryStore.diaryView()" class="list-group">
   <ng-template let-item="item" let-i="index">
-      <GridLayout [ngClass]="{'high-average': item.average >= 7, 'low-average': item.average < 3}">
-      <label [text]="item.date"></label>
+      <GridLayout [ngClass]="{'high-average': item.average >= 7, 'low-average': item.average < 3}" class="list-item">
+      <Label (tap)="viewEntry(item.id)" [text]="item.date | date: 'dd.MM.yyyy'" class="item-text"></Label>
     </GridLayout>
   </ng-template>
 </ListView>

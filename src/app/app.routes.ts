@@ -14,6 +14,11 @@ export const routes: Routes = [
     path: "add-entry",
     loadChildren: () =>
       import("./features/addentry/add-entry.module").then(m => m.AddEntryModule)
+  },
+  {
+    path: "add-entry/:id",
+    loadChildren: () =>
+      import("./features/addentry/add-entry.module").then(m => m.AddEntryModule)
   }
 ];
 

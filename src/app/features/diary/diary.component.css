@@ -6,3 +6,12 @@
   background-color: lightcoral;
 }
 
+.list-item {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.item-text {
+  font-size: 18px;
+}

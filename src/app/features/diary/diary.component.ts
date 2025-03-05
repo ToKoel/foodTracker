@@ -15,11 +15,13 @@ export class DiaryComponent {
 
 
 
-  viewEntry(event: any) {
-    console.log("clicked");
+  viewEntry(itemId: string) {
+    this.diaryStore.setSelected(itemId);
+    this.router.navigate(["add-entry"]);
   }
 
   navigateToAddEntry() {
+    this.diaryStore.setSelected(undefined);
     this.router.navigate(["add-entry"]);
   }
 

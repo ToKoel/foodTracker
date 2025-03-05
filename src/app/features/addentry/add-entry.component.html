@@ -1,13 +1,25 @@
 <ActionBar title="Add entry"></ActionBar>
 
 <StackLayout>
-  <TextField [(ngModel)]="foodInput" hint="Enter food items, separated by commas"></TextField>
-  <TextField [(ngModel)]="drinksInput" hint="Enter drinks, separated by commas"></TextField>
-  <TextField [(ngModel)]="medication" hint="Enter medication, separated by commas"></TextField>
+  <TextField
+    [text]="foodInput"
+    (textChange)="onTextValueChange($event, TextFieldEnum.FOOD)"
+    hint="Enter food items, separated by commas">
+  </TextField>
+  <TextField
+    [text]="drinksInput"
+    (textChange)="onTextValueChange($event, TextFieldEnum.DRINKS)"
+    hint="Enter drinks, separated by commas">
+  </TextField>
+  <TextField
+    [text]="medication"
+    (textChange)="onTextValueChange($event, TextFieldEnum.MEDS)"
+    hint="Enter medication, separated by commas"></TextField>
+
   <Label [text]="'Rate your sleep quality: ' + sleepQuality" class="h2"></Label>
   <Slider
     minValue="0"
-    value="5"
+    [value]=sleepQuality
     maxValue="10"
     step="1"
     (valueChange)="onSleepSliderChange($event)"
@@ -15,7 +27,7 @@
   <Label [text]="'Rate stomach pain: ' + stomach" class="h2"></Label>
   <Slider
     minValue="0"
-    value="5"
+    [value]=stomach
     maxValue="10"
     step="1"
     (valueChange)="onStomachSliderChange($event)"
