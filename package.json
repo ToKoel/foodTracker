@@ -26,7 +26,29 @@
     "@nativescript/types": "~8.9.0",
     "@nativescript/webpack": "~5.0.0",
     "@ngtools/webpack": "~19.0.0",
+    "@types/jest": "^29.5.14",
+    "esbuild": "^0.25.0",
+    "jest": "^29.7.0",
+    "jest-preset-angular": "^14.5.3",
     "tailwindcss": "~3.4.0",
+    "ts-jest": "^29.2.6",
     "typescript": "~5.6.0"
+  },
+  "jest" : {
+    "preset": "jest-preset-angular",
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setup.jest.ts"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/dist/"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "<rootDir>/tsconfig.spec.json",
+        "stringifyContentPathRegex": "\\.html$"
+      }
+    },
+    "collectCoverage": false
   }
 }
