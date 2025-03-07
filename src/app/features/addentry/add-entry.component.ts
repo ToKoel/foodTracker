@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from "@angular/core";
 import { RouterExtensions } from "@nativescript/angular";
-import { diaryStore } from "../../models/diary.store";
+import { DiaryStore } from "../../models/diary.store";
 import { DiaryEntry } from "../../models/diary-entry.model";
 import { TextFieldEnum } from "./enums/text-field-enum";
 
@@ -18,7 +18,7 @@ export class AddEntryComponent implements OnInit {
   stomach: number = 5;
   medication: string = "";
 
-  diaryStore = inject(diaryStore);
+  diaryStore = inject(DiaryStore);
   router = inject(RouterExtensions);
   currentEntrySignal = this.diaryStore.currentEntry;
 

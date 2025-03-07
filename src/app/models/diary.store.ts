@@ -7,7 +7,7 @@ import { computed } from "@angular/core"
 import { createDiaryView, getCurrentEntry } from "./diary.store.view"
 
 
-export const diaryStore = signalStore(
+export const DiaryStore = signalStore(
   { providedIn: 'root' },
   withState(initialDiaryState),
   withComputed(store => ({
