@@ -44,7 +44,7 @@ export class AddEntryComponent implements OnInit {
       sleepQuality: this.sleepQuality,
       stomach: this.stomach,
     };
-    this.diaryStore.addEntry(newEntry);
+    this.diaryStore.addOrUpdateEntry(newEntry);
     this.router.navigate([""]);
   }
 

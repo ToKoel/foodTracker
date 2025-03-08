@@ -15,7 +15,7 @@ export const DiaryStore = signalStore(
     currentEntry: computed(() => getCurrentEntry(store.selectedId(), store.diaryEntries())),
   })),
   withMethods(store => ({
-    addEntry: (entry: DiaryEntry) => patchState(store, updateEntries(entry)),
+    addOrUpdateEntry: (entry: DiaryEntry) => patchState(store, updateEntries(entry)),
     setSelected: (id: string) => patchState(store, updateSelected(id)),
   })),
 )
