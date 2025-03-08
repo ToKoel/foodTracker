@@ -7,7 +7,6 @@ export interface DiaryViewItem extends DiaryEntry {
 
 
 export function createDiaryView(diaryEntries: DiaryEntry[]): DiaryViewItem[] {
-  console.log("recalculating", diaryEntries);
   const items = diaryEntries.reduce((acc, current) => {
     acc.push({
       ...current,

@@ -34,7 +34,7 @@ export class AddEntryComponent implements OnInit {
   }
 
   saveEntry() {
-    const existingId = this.currentEntrySignal().id;
+    const existingId = this.currentEntrySignal()?.id;
     const newEntry: DiaryEntry = {
       id: existingId || new Date().toISOString(),
       date: new Date().toISOString().split("T")[0],

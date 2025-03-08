@@ -10,3 +10,5 @@ export const initialDiaryState: DiarySlice = {
   diaryEntries: [
   ],
 }
+
+export type PersistedDiarySlice = Pick<DiarySlice, 'diaryEntries'>;
