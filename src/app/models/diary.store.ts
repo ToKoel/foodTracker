@@ -2,7 +2,7 @@ import { patchState, signalStore, withComputed, withHooks, withProps } from "@ng
 import { initialDiaryState, PersistedDiarySlice } from "./diary.slice"
 import { withState, withMethods } from "@ngrx/signals"
 import { DiaryEntry } from "./diary-entry.model"
-import { updateEntries, updateSelected } from "./diary.store.updaters"
+import { saveToFile, updateEntries, updateSelected } from "./diary.store.updaters"
 import { computed, effect, Signal } from "@angular/core"
 import { createDiaryView, getCurrentEntry } from "./diary.store.view"
 import { knownFolders, path, File } from "@nativescript/core"
@@ -42,14 +42,7 @@ export const DiaryStore = signalStore(
         });
 
       effect(() => {
-        const persistedValue = persisted();
-        store._diaryFile.writeText(JSON.stringify(persistedValue))
-          .then(() => {
-            console.log('Diary entries saved successfully.');
-          })
-          .catch((error) => {
-            console.error('Error saving diary entries:', error);
-          });
+        saveToFile(store._diaryFile, persisted());
       });
     }
   }))
