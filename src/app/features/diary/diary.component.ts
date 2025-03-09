@@ -25,5 +25,9 @@ export class DiaryComponent {
     this.router.navigate(["add-entry"]);
   }
 
+  export() {
+    this.diaryStore.export();
+  }
+
 
 }

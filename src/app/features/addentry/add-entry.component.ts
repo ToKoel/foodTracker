@@ -8,6 +8,7 @@ import { TextFieldEnum } from "./enums/text-field-enum";
   moduleId: module.id,
   selector: "app-add-entry",
   templateUrl: "./add-entry.component.html",
+  styleUrl: "./add-entry.component.css",
   standalone: false,
 })
 export class AddEntryComponent implements OnInit {
@@ -17,6 +18,7 @@ export class AddEntryComponent implements OnInit {
   sleepQuality: number = 5;
   stomach: number = 5;
   medication: string = "";
+  dateInput: string = new Date().toISOString();
 
   diaryStore = inject(DiaryStore);
   router = inject(RouterExtensions);
@@ -30,6 +32,7 @@ export class AddEntryComponent implements OnInit {
       this.sleepQuality = currentEntry.sleepQuality;
       this.stomach = currentEntry.stomach;
       this.medication = currentEntry.medication?.join(",");
+      this.dateInput = currentEntry.date;
     }
   }
 
@@ -37,7 +40,7 @@ export class AddEntryComponent implements OnInit {
     const existingId = this.currentEntrySignal()?.id;
     const newEntry: DiaryEntry = {
       id: existingId || new Date().toISOString(),
-      date: new Date().toISOString().split("T")[0],
+      date: this.dateInput,
       food: this.foodInput.split(",").map(f => f.trim()),
       drinks: this.drinksInput.split(",").map(d => d.trim()),
       medication: this.medication.split(",").map(d => d.trim()),
@@ -54,6 +57,10 @@ export class AddEntryComponent implements OnInit {
 
   onSleepSliderChange(event: any) {
     this.sleepQuality = Math.round(event.value);
+  }
+
+  onDateChange(event: any) {
+    this.dateInput = event.value;
   }
 
   onTextValueChange(event: any, component: TextFieldEnum) {

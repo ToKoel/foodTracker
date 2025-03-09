@@ -1,37 +1,44 @@
 <ActionBar title="Add entry"></ActionBar>
 
 <StackLayout>
-  <TextField
+  <DatePicker [date]="dateInput" (dateChange)="onDateChange($event)" class='component-spacing'></DatePicker>
+  <TextView
+    class='component-spacing textField'
     [text]="foodInput"
     (textChange)="onTextValueChange($event, TextFieldEnum.FOOD)"
     hint="Enter food items, separated by commas">
-  </TextField>
-  <TextField
+  </TextView>
+  <TextView
+    class='component-spacing textField'
     [text]="drinksInput"
     (textChange)="onTextValueChange($event, TextFieldEnum.DRINKS)"
     hint="Enter drinks, separated by commas">
-  </TextField>
-  <TextField
+  </TextView>
+  <TextView
+    class='component-spacing textField'
     [text]="medication"
     (textChange)="onTextValueChange($event, TextFieldEnum.MEDS)"
-    hint="Enter medication, separated by commas"></TextField>
+    hint="Enter medication, separated by commas">
+  </TextView>
 
-  <Label [text]="'Rate your sleep quality: ' + sleepQuality" class="h2"></Label>
+  <Label [text]="'Rate your sleep quality: ' + sleepQuality" class="h2 component-spacing"></Label>
   <Slider
+    class="slider-margins"
     minValue="0"
     [value]=sleepQuality
     maxValue="10"
     step="1"
     (valueChange)="onSleepSliderChange($event)"
     ></Slider>
-  <Label [text]="'Rate stomach pain: ' + stomach" class="h2"></Label>
+  <Label [text]="'Rate stomach pain: ' + stomach" class="h2 component-spacing"></Label>
   <Slider
+    class="slider-margins"
     minValue="0"
     [value]=stomach
     maxValue="10"
     step="1"
     (valueChange)="onStomachSliderChange($event)"
     ></Slider>
-  <Button text="Save Entry" (tap)="saveEntry()"></Button>
+  <Button text="Save &#xf0c7;" class='fas button' (tap)="saveEntry()"></Button>
 </StackLayout>
 

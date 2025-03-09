@@ -6,6 +6,7 @@ import { saveToFile, updateEntries, updateSelected } from "./diary.store.updater
 import { computed, effect, Signal } from "@angular/core"
 import { createDiaryView, getCurrentEntry } from "./diary.store.view"
 import { knownFolders, path, File } from "@nativescript/core"
+import { shareAppState } from "./diary.store.helpers"
 
 
 export const DiaryStore = signalStore(
@@ -25,6 +26,7 @@ export const DiaryStore = signalStore(
   withMethods(store => ({
     addOrUpdateEntry: (entry: DiaryEntry) => patchState(store, updateEntries(entry)),
     setSelected: (id: string) => patchState(store, updateSelected(id)),
+    export: () => shareAppState(store.diaryEntries()),
   })),
   withHooks(store => ({
     onInit() {
