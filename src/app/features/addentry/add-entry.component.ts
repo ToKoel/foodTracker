@@ -48,7 +48,7 @@ export class AddEntryComponent implements OnInit {
       stomach: this.stomach,
     };
     this.diaryStore.addOrUpdateEntry(newEntry);
-    this.router.navigate([""]);
+    this.router.navigate([""], { clearHistory: true });
   }
 
   onStomachSliderChange(event: any) {
