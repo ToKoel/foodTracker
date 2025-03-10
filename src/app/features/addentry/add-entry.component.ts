@@ -19,6 +19,9 @@ export class AddEntryComponent implements OnInit {
   stomach: number = 5;
   medication: string = "";
   dateInput: string = new Date().toISOString();
+  activity: boolean = false;
+  lastMealTimeHour: string = "0";
+  lastMealTimeMinute: string = "0";
 
   diaryStore = inject(DiaryStore);
   router = inject(RouterExtensions);
@@ -33,6 +36,11 @@ export class AddEntryComponent implements OnInit {
       this.stomach = currentEntry.stomach;
       this.medication = currentEntry.medication?.join(",");
       this.dateInput = currentEntry.date;
+      this.activity = currentEntry.activity;
+      if (currentEntry.lastMealTime) {
+        this.lastMealTimeHour = currentEntry.lastMealTime.split(":")[0];
+        this.lastMealTimeMinute = currentEntry.lastMealTime.split(":")[1];
+      }
     }
   }
 
@@ -46,9 +54,16 @@ export class AddEntryComponent implements OnInit {
       medication: this.medication.split(",").map(d => d.trim()),
       sleepQuality: this.sleepQuality,
       stomach: this.stomach,
+      activity: this.activity,
+      lastMealTime: [this.lastMealTimeHour, this.lastMealTimeMinute].join(":"),
     };
     this.diaryStore.addOrUpdateEntry(newEntry);
     this.router.navigate([""], { clearHistory: true });
+  }
+
+  onTimeChange(event: any) {
+    this.lastMealTimeHour = event.value.getHours();
+    this.lastMealTimeMinute = event.value.getMinutes();
   }
 
   onStomachSliderChange(event: any) {

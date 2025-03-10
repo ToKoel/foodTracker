@@ -6,4 +6,6 @@ export interface DiaryEntry {
   medication?: string[];
   stomach: number;
   sleepQuality: number;
+  lastMealTime?: string;
+  activity?: boolean;
 }

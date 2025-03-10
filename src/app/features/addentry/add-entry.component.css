@@ -11,6 +11,26 @@
   margin-right: 30px;
 }
 
+.title {
+  font-size: 18;
+  font-weight: bold;
+  margin-left: 30px;
+}
+
+.row-layout {
+  align-items: center;
+}
+
+.time-label {
+  text-align:right;
+  margin-right: 8px;
+}
+
+.time-picker {
+  width: 150px;
+  margin-right: 30px;
+}
+
 .textField {
   background-color: #D3D3D3;
   height: 150px;
@@ -18,15 +38,17 @@
   font-size: 16
 }
 
+.date-picker {
+  width: 300px;
+  margin-right: 30px;
+  text-align: right;
+}
+
 .button {
-  /*background-color: blue;*/
-  /*border-color: black;*/
-  /*border-radius: 20;*/
-  /*border-width: 1;*/
-  /*color: whitesmoke;*/
   font-size: 20;
   font-weight: bold;
   margin-right: 100px;
   margin-left: 100px;
-  margin-top: 30px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }

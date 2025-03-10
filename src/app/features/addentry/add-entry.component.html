@@ -1,19 +1,39 @@
 <ActionBar title="Add entry"></ActionBar>
 
-<StackLayout>
-  <DatePicker [date]="dateInput" (dateChange)="onDateChange($event)" class='component-spacing'></DatePicker>
+<GridLayout rows="*, auto">
+  <ScrollView row="0">
+    <StackLayout>
+      <GridLayout columns="*, auto" rows="auto" class="row-layout">
+        <CheckBox col="0" #CB1 text="Physical activity" [(ngModel)]="activity" boxType="square" class='h2 component-spacing'></CheckBox>
+        <DatePicker col="1" [date]="dateInput" (dateChange)="onDateChange($event)" class='date-picker'></DatePicker>
+      </GridLayout>
+
+      <GridLayout columns="auto, *, auto" rows="auto" class="row-layout">
+        <Label col="0" text="Food: " class="title"></Label>
+        <Label col="1" text="Last meal time: " class="time-label"></Label>
+        <TimePicker
+          class='time-picker'
+          col="2"
+          [hour]="lastMealTimeHour"
+          [minute]="lastMealTimeMinute"
+          (timeChange)="onTimeChange($event)">
+        </TimePicker>
+      </GridLayout>
+
   <TextView
     class='component-spacing textField'
     [text]="foodInput"
     (textChange)="onTextValueChange($event, TextFieldEnum.FOOD)"
     hint="Enter food items, separated by commas">
   </TextView>
+  <Label text="Drinks: " class="title"></Label>
   <TextView
     class='component-spacing textField'
     [text]="drinksInput"
     (textChange)="onTextValueChange($event, TextFieldEnum.DRINKS)"
     hint="Enter drinks, separated by commas">
   </TextView>
+  <Label text="Medication: " class="title"></Label>
   <TextView
     class='component-spacing textField'
     [text]="medication"
@@ -39,6 +59,13 @@
     step="1"
     (valueChange)="onStomachSliderChange($event)"
     ></Slider>
-  <Button text="Save &#xf0c7;" class='fas button' (tap)="saveEntry()"></Button>
 </StackLayout>
+    </ScrollView>
+  <Button row="1" (tap)="saveEntry()">
+    <FormattedString>
+      <Span class="fas" text="&#xf0c7; "></Span>
+      <Span class="button" text="Save"></Span>
+    </FormattedString>
+  </Button>
+</GridLayout>
 
