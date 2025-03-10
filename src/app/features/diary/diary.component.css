@@ -15,3 +15,20 @@
 .item-text {
   font-size: 18px;
 }
+
+.status-dot {
+  border-radius: 5;
+  width: 10;
+  height: 10;
+  margin-right: 10;
+}
+
+.header-text {
+  font-weight: bold;
+  font-size: 16;
+}
+
+.summary-text {
+  font-size: 14;
+  color: #666666;
+}

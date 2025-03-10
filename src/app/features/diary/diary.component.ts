@@ -15,7 +15,8 @@ export class DiaryComponent {
 
 
 
-  viewEntry(itemId: string) {
+  viewEntry(itemTapEvent: any) {
+    const itemId = itemTapEvent.view.bindingContext.id;
     this.diaryStore.setSelected(itemId);
     this.router.navigate(["add-entry"]);
   }
