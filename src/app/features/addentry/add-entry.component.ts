@@ -3,6 +3,7 @@ import { RouterExtensions } from "@nativescript/angular";
 import { DiaryStore } from "../../models/diary.store";
 import { DiaryEntry } from "../../models/diary-entry.model";
 import { TextFieldEnum } from "./enums/text-field-enum";
+import { FoodEntry } from "../../models/diary-entry.model";
 
 @Component({
   moduleId: module.id,
@@ -13,7 +14,8 @@ import { TextFieldEnum } from "./enums/text-field-enum";
 })
 export class AddEntryComponent implements OnInit {
   TextFieldEnum = TextFieldEnum;
-  foodInput: string = "";
+  foodInputEntries: FoodEntry[] = [];
+  foodInput: string[] = [];
   drinksInput: string = "";
   sleepQuality: number = 5;
   stomach: number = 5;
@@ -30,7 +32,7 @@ export class AddEntryComponent implements OnInit {
   ngOnInit(): void {
     const currentEntry = this.currentEntrySignal();
     if (currentEntry) {
-      this.foodInput = currentEntry.food?.join(",");
+      this.foodInputEntries = currentEntry.food;
       this.drinksInput = currentEntry.drinks?.join(",");
       this.sleepQuality = currentEntry.sleepQuality;
       this.stomach = currentEntry.stomach;
@@ -49,7 +51,7 @@ export class AddEntryComponent implements OnInit {
     const newEntry: DiaryEntry = {
       id: existingId || new Date().toISOString(),
       date: this.dateInput,
-      food: this.foodInput.split(",").map(f => f.trim()),
+      food: this.foodInputEntries,
       drinks: this.drinksInput.split(",").map(d => d.trim()),
       medication: this.medication.split(",").map(d => d.trim()),
       sleepQuality: this.sleepQuality,
@@ -80,9 +82,6 @@ export class AddEntryComponent implements OnInit {
 
   onTextValueChange(event: any, component: TextFieldEnum) {
     switch (component) {
-      case TextFieldEnum.FOOD:
-        this.foodInput = event.value;
-        break;
       case TextFieldEnum.DRINKS:
         this.drinksInput = event.value;
         break;
