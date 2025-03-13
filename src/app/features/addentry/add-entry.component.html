@@ -1,6 +1,6 @@
 @let currentEntry = diaryStore.currentEntry();
 
-<ion-modal [isOpen]="diaryStore.isAddEntryModalOpen()">
+<ion-modal [isOpen]="diaryStore.isAddEntryModalOpen()" canDismiss="true">
     <ng-template>
       <ion-header>
         <ion-toolbar>
@@ -9,6 +9,8 @@
             <ion-button (click)="diaryStore.setAddEntryModalState(false)">
               <ion-icon name="close-outline"></ion-icon>
             </ion-button>
+          </ion-buttons>
+          <ion-buttons slot="secondary">
             <ion-button (click)="diaryStore.removeEntry(currentEntry?.id)">
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
@@ -17,7 +19,7 @@
       </ion-header>
       <ion-content *ngIf="currentEntry" class="ion-padding">
         <ion-item>
-          <ion-list [inset]="true" style="width:90%;">
+          <ion-list [inset]="true" style="width:98%;">
             <ion-list-header>
               <ion-label class="meal-label"><strong>Meals</strong></ion-label>
               <ion-button>
@@ -36,7 +38,7 @@
         </ion-item>
 
         <ion-item>
-        <ion-list [inset]="true" style="width:90%;">
+        <ion-list [inset]="true" style="width:98%;">
             <ion-list-header>
               <ion-label class="meal-label"><strong>Drinks</strong></ion-label>
               <ion-button>
