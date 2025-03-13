@@ -5,13 +5,13 @@ import { addOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss'],
+  selector: 'app-diary-page',
+  templateUrl: 'diary.page.html',
+  styleUrls: ['diary.page.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, DiaryComponent, IonIcon, IonButtons, IonButton,
   ],
 })
-export class Tab1Page {
+export class DiaryPage {
   constructor() {
     addIcons({ addOutline });
   }
