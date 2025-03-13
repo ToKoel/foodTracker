@@ -17,22 +17,32 @@
       </ion-header>
       <ion-content *ngIf="currentEntry" class="ion-padding">
         <ion-item>
-        <ion-label position="stacked" class="meal-label"><strong>Meals</strong></ion-label>
-        <ion-list [inset]="true" style="width:90%;">
-          <ion-item *ngFor="let item of currentEntry.food">
-            <ion-label>
-            <ion-text>{{ item.ingredients.join(",") }}</ion-text>
-              </ion-label>
-              <div class="metadata-end-wrapper" slot="end">
-                 <ion-note color="medium">{{ item.time }}</ion-note>
-              </div>
-          </ion-item>
-        </ion-list>
+          <ion-list [inset]="true" style="width:90%;">
+            <ion-list-header>
+              <ion-label class="meal-label"><strong>Meals</strong></ion-label>
+              <ion-button>
+                <ion-icon name="add-outline"></ion-icon>
+              </ion-button>
+            </ion-list-header>
+            <ion-item *ngFor="let item of currentEntry.food">
+              <ion-label>
+              <ion-text>{{ item.ingredients.join(",") }}</ion-text>
+                </ion-label>
+                <div class="metadata-end-wrapper" slot="end">
+                  <ion-note color="medium">{{ item.time }}</ion-note>
+                </div>
+            </ion-item>
+          </ion-list>
         </ion-item>
 
         <ion-item>
-        <ion-label position="stacked" class="meal-label"><strong>Drinks</strong></ion-label>
         <ion-list [inset]="true" style="width:90%;">
+            <ion-list-header>
+              <ion-label class="meal-label"><strong>Drinks</strong></ion-label>
+              <ion-button>
+                <ion-icon name="add-outline"></ion-icon>
+              </ion-button>
+            </ion-list-header>
           <ion-item *ngFor="let item of currentEntry.drinks">
             <ion-label>
             <ion-text>{{ item.name }}</ion-text>

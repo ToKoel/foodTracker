@@ -1,10 +1,10 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonModal, IonNote, IonText, IonTitle, IonToolbar } from "@ionic/angular/standalone";
+import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonListHeader, IonModal, IonNote, IonText, IonTitle, IonToolbar } from "@ionic/angular/standalone";
 import { OverlayEventDetail } from '@ionic/core/components';
 import { addIcons } from "ionicons";
-import { closeOutline, trashOutline } from "ionicons/icons";
+import { addOutline, closeOutline, trashOutline } from "ionicons/icons";
 import { DiaryEntry, FoodEntry } from "../../models/diary-entry.model";
 import { DiaryStore } from "../../models/diary.store";
 import { TextFieldEnum } from "./enums/text-field-enum";
@@ -30,13 +30,14 @@ import { TextFieldEnum } from "./enums/text-field-enum";
     IonModal,
     IonTitle,
     IonToolbar,
+    IonListHeader,
   ],
 })
 export class AddEntryComponent implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
 
   constructor() {
-    addIcons({ closeOutline, trashOutline });
+    addIcons({ addOutline, closeOutline, trashOutline });
   }
 
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
