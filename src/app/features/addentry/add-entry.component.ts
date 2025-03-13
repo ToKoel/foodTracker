@@ -1,24 +1,32 @@
+import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
-import { DiaryStore } from "../../models/diary.store";
-import { DiaryEntry } from "../../models/diary-entry.model";
-import { TextFieldEnum } from "./enums/text-field-enum";
-import { FoodEntry } from "../../models/diary-entry.model";
 import { FormsModule } from "@angular/forms";
-import { IonButton, IonButtons, IonContent, IonHeader, IonInput, IonItem, IonTitle, IonToolbar, IonModal } from "@ionic/angular/standalone";
+import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonModal, IonNote, IonText, IonTitle, IonToolbar } from "@ionic/angular/standalone";
 import { OverlayEventDetail } from '@ionic/core/components';
+import { addIcons } from "ionicons";
+import { closeOutline, trashOutline } from "ionicons/icons";
+import { DiaryEntry, FoodEntry } from "../../models/diary-entry.model";
+import { DiaryStore } from "../../models/diary.store";
+import { TextFieldEnum } from "./enums/text-field-enum";
 
 @Component({
   selector: "app-add-entry",
   templateUrl: "./add-entry.component.html",
-  styleUrl: "./add-entry.component.css",
+  styleUrl: "./add-entry.component.scss",
   imports: [
+    CommonModule,
     FormsModule,
+    IonInput,
+    IonItem,
+    IonList,
+    IonLabel,
+    IonNote,
+    IonText,
     IonButton,
     IonButtons,
     IonContent,
     IonHeader,
-    IonInput,
-    IonItem,
+    IonIcon,
     IonModal,
     IonTitle,
     IonToolbar,
@@ -26,6 +34,10 @@ import { OverlayEventDetail } from '@ionic/core/components';
 })
 export class AddEntryComponent implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
+
+  constructor() {
+    addIcons({ closeOutline, trashOutline });
+  }
 
   message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
   name!: string;
@@ -66,7 +78,7 @@ export class AddEntryComponent implements OnInit {
     const currentEntry = this.currentEntrySignal();
     if (currentEntry) {
       this.foodInputEntries = currentEntry.food!;
-      this.drinksInput = currentEntry.drinks?.join(",")!;
+      // this.drinksInput = currentEntry.drinks?.join(",")!;
       this.sleepQuality = currentEntry.sleepQuality;
       this.stomach = currentEntry.stomach;
       this.medication = currentEntry.medication?.join(",")!;
@@ -85,7 +97,7 @@ export class AddEntryComponent implements OnInit {
       id: existingId || new Date().toISOString(),
       date: this.dateInput,
       food: this.foodInputEntries,
-      drinks: this.drinksInput.split(",").map(d => d.trim()),
+      // drinks: this.drinksInput.split(",").map(d => d.trim()),
       medication: this.medication.split(",").map(d => d.trim()),
       sleepQuality: this.sleepQuality,
       stomach: this.stomach,

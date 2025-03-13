@@ -27,6 +27,10 @@ export const DiaryStore = signalStore(
     setSelected: (id: string) => patchState(store, updateSelected(id)),
     export: () => shareAppState(store.diaryEntries()),
     setAddEntryModalState: (isOpen: boolean) => patchState(store, setAddEntryModalState(isOpen)),
+    removeEntry: (id: string | undefined) => {
+      console.log("removing: ", id);
+      patchState(store, setAddEntryModalState(false))
+    },
   })),
   withHooks(store => ({
     onInit() {

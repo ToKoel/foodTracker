@@ -44,11 +44,37 @@
   text-align: right;
 }
 
-.button {
-  font-size: 20;
-  font-weight: bold;
-  margin-right: 100px;
-  margin-left: 100px;
-  margin-top: 50px;
-  margin-bottom: 50px;
+ion-label{
+  display: block;
+
+  max-width: calc(100% - 60px);
+  min-width: 60%;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
 }
+
+.metadata-end-wrapper {
+  position: absolute;
+
+  top: 10px;
+  inset-inline-end: 10px;
+
+  font-size: 0.8rem;
+
+  display: flex;
+  align-items: center;
+}
+
+.meal-label {
+  font-size: 25px;
+}
+
+ion-button {
+  --background: transparent;
+  --border: none;
+  --padding-start: 0;
+  --padding-end: 0;
+}
+

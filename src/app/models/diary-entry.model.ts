@@ -2,7 +2,7 @@ export interface DiaryEntry {
   id: string;
   date: string;
   food?: FoodEntry[];
-  drinks?: string[];
+  drinks?: DrinkEntry[];
   medication?: string[];
   stomach: number;
   sleepQuality: number;
@@ -13,4 +13,9 @@ export interface DiaryEntry {
 export interface FoodEntry {
   time: string,
   ingredients: string[]
+}
+
+export interface DrinkEntry {
+  name: string,
+  quantity?: number
 }
