@@ -2,12 +2,23 @@ import { DiaryEntry } from "./diary-entry.model";
 
 export interface DiarySlice {
   diaryEntries: DiaryEntry[],
-  selectedId: string
+  selectedId: string | undefined;
+  isAddEntryModalOpen: boolean;
 }
 
 export const initialDiaryState: DiarySlice = {
   selectedId: undefined,
-  diaryEntries: [
+  isAddEntryModalOpen: false,
+  diaryEntries: [{
+    date: "2025-03-12",
+    sleepQuality: 2,
+    stomach: 3,
+    id: "1",
+    food: [{ ingredients: ["test"], time: "10:10" }],
+    drinks: ["drink"],
+    activity: false,
+    medication: ["meds"]
+  }
   ],
 }
 

@@ -1,7 +1,6 @@
 import { PartialStateUpdater } from "@ngrx/signals";
 import { DiaryEntry } from "./diary-entry.model";
 import { DiarySlice, PersistedDiarySlice } from "./diary.slice";
-import { File } from "@nativescript/core";
 
 export function updateEntries(entry: DiaryEntry): PartialStateUpdater<DiarySlice> {
   return state => {
@@ -21,17 +20,24 @@ export function updateEntries(entry: DiaryEntry): PartialStateUpdater<DiarySlice
   }
 }
 
+export function setAddEntryModalState(isOpen: boolean): PartialStateUpdater<DiarySlice> {
+  return _ => ({
+    isAddEntryModalOpen: isOpen
+  });
+}
+
 export function saveToFile(diaryFile: File, persistedValue: PersistedDiarySlice) {
-  if (diaryFile.isLocked) {
-    return;
-  }
-  diaryFile.writeText(JSON.stringify(persistedValue))
-    .then(() => {
-      console.log('Diary entries saved successfully.');
-    })
-    .catch((error) => {
-      console.error('Error saving diary entries:', error);
-    });
+  console.log("saving");
+  // if (diaryFile.isLocked) {
+  //   return;
+  // }
+  // diaryFile.writeText(JSON.stringify(persistedValue))
+  //   .then(() => {
+  //     console.log('Diary entries saved successfully.');
+  //   })
+  //   .catch((error) => {
+  //     console.error('Error saving diary entries:', error);
+  //   });
 }
 
 export function updateSelected(id: string): PartialStateUpdater<DiarySlice> {

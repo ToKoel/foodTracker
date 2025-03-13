@@ -1,29 +1,31 @@
-import { Component, inject, NO_ERRORS_SCHEMA } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { Component, inject } from "@angular/core";
+import { IonItem, IonLabel, IonList } from "@ionic/angular/standalone";
 import { DiaryStore } from "../../models/diary.store";
-import { NativeScriptCommonModule, RouterExtensions } from "@nativescript/angular";
+import { AddEntryComponent } from "../addentry/add-entry.component";
 
 @Component({
-  moduleId: module.id,
-  standalone: false,
-  selector: "diary",
+  selector: "diary-component",
   templateUrl: "./diary.component.html",
-  styleUrl: "./diary.component.css"
+  styleUrl: "./diary.component.scss",
+  imports: [IonItem, IonLabel, IonList, CommonModule, AddEntryComponent],
 })
 export class DiaryComponent {
   diaryStore = inject(DiaryStore);
-  router = inject(RouterExtensions);
-
-
 
   viewEntry(itemTapEvent: any) {
     const itemId = itemTapEvent.view.bindingContext.id;
     this.diaryStore.setSelected(itemId);
-    this.router.navigate(["add-entry"]);
   }
 
   navigateToAddEntry() {
-    this.diaryStore.setSelected(undefined);
-    this.router.navigate(["add-entry"]);
+    this.diaryStore.setSelected('');
+  }
+
+  onItemClick(itemId: string) {
+    console.log(itemId);
+    this.diaryStore.setSelected(itemId);
+    this.diaryStore.setAddEntryModalState(true);
   }
 
   export() {

@@ -1,29 +1,12 @@
-<ActionBar title="Food Tracker">
-    <NavigationButton visibility="collapsed"/>
-    <ActionItem (tap)="export()" ios.position="right">
-    <Label class="fas" style="margin-top: 10px" text="&#xf019;"></Label>
-    </ActionItem>
-    <ActionItem (tap)="navigateToAddEntry()" ios.position="right">
-    <Label class="fas" style="margin-top: 10px" text="&#xf067;"></Label>
-    </ActionItem>
-</ActionBar>
+@let diaryEntries = diaryStore.diaryView();
 
-<GridLayout rows="auto, *">
-  <ListView [items]="diaryStore.diaryView()" class="list-group" (itemTap)="viewEntry($event)">
-  <ng-template let-item="item" let-i="index">
-    <ListView.itemTemplate>
-      <StackLayout orientation="vertical" padding="10">
-        <StackLayout orientation="horizontal" verticalAlignment="center">
-            <!-- Colored Dot -->
-          <Label class="status-dot" backgroundColor="{{ item.statusColor }}" width="10" height="10" borderRadius="5" marginRight="10"></Label>
-          <!-- Bold Header -->
-          <Label [text]="item.date | date: 'dd.MM.yyyy'" class="header-text"></Label>
-        </StackLayout>
-           <!-- Summary Text -->
-        <Label [text]="item.summary" class="summary-text" textWrap="true" marginTop="5"></Label>
-      </StackLayout>
-    </ListView.itemTemplate>
-  </ng-template>
-</ListView>
-</GridLayout>
+<app-add-entry></app-add-entry>
+
+<ion-list>
+  @for(item of diaryEntries; track item.date) {
+    <ion-item button (click)="onItemClick(item.id)">
+      <ion-label>{{ item.date | date: 'dd.MM.yyyy' }}</ion-label>
+    </ion-item>
+  }
+</ion-list>
 

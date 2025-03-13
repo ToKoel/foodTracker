@@ -1,18 +1,51 @@
-import { Component, inject, OnInit } from "@angular/core";
-import { RouterExtensions } from "@nativescript/angular";
+import { Component, inject, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { DiaryStore } from "../../models/diary.store";
 import { DiaryEntry } from "../../models/diary-entry.model";
 import { TextFieldEnum } from "./enums/text-field-enum";
 import { FoodEntry } from "../../models/diary-entry.model";
+import { FormsModule } from "@angular/forms";
+import { IonButton, IonButtons, IonContent, IonHeader, IonInput, IonItem, IonTitle, IonToolbar, IonModal } from "@ionic/angular/standalone";
+import { OverlayEventDetail } from '@ionic/core/components';
 
 @Component({
-  moduleId: module.id,
   selector: "app-add-entry",
   templateUrl: "./add-entry.component.html",
   styleUrl: "./add-entry.component.css",
-  standalone: false,
+  imports: [
+    FormsModule,
+    IonButton,
+    IonButtons,
+    IonContent,
+    IonHeader,
+    IonInput,
+    IonItem,
+    IonModal,
+    IonTitle,
+    IonToolbar,
+  ],
 })
 export class AddEntryComponent implements OnInit {
+  @ViewChild(IonModal) modal!: IonModal;
+
+  message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
+  name!: string;
+
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+    this.diaryStore.setAddEntryModalState(false);
+  }
+
+  confirm() {
+    this.modal.dismiss(this.name, 'confirm');
+    this.diaryStore.setAddEntryModalState(false);
+  }
+
+  onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
+    if (event.detail.role === 'confirm') {
+      this.message = `Hello, ${event.detail.data}!`;
+    }
+  }
+
   TextFieldEnum = TextFieldEnum;
   foodInputEntries: FoodEntry[] = [];
   foodInput: string[] = [];
@@ -26,19 +59,19 @@ export class AddEntryComponent implements OnInit {
   lastMealTimeMinute: string = "0";
 
   diaryStore = inject(DiaryStore);
-  router = inject(RouterExtensions);
   currentEntrySignal = this.diaryStore.currentEntry;
+  _vcRef = inject(ViewContainerRef);
 
   ngOnInit(): void {
     const currentEntry = this.currentEntrySignal();
     if (currentEntry) {
-      this.foodInputEntries = currentEntry.food;
-      this.drinksInput = currentEntry.drinks?.join(",");
+      this.foodInputEntries = currentEntry.food!;
+      this.drinksInput = currentEntry.drinks?.join(",")!;
       this.sleepQuality = currentEntry.sleepQuality;
       this.stomach = currentEntry.stomach;
-      this.medication = currentEntry.medication?.join(",");
+      this.medication = currentEntry.medication?.join(",")!;
       this.dateInput = currentEntry.date;
-      this.activity = currentEntry.activity;
+      this.activity = currentEntry.activity!;
       if (currentEntry.lastMealTime) {
         this.lastMealTimeHour = currentEntry.lastMealTime.split(":")[0];
         this.lastMealTimeMinute = currentEntry.lastMealTime.split(":")[1];
@@ -60,7 +93,6 @@ export class AddEntryComponent implements OnInit {
       lastMealTime: [this.lastMealTimeHour, this.lastMealTimeMinute].join(":"),
     };
     this.diaryStore.addOrUpdateEntry(newEntry);
-    this.router.navigate([""], { clearHistory: true });
   }
 
   onTimeChange(event: any) {

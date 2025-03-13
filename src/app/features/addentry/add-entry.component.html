@@ -1,71 +1,91 @@
-<ActionBar title="Add entry"></ActionBar>
-
-<GridLayout rows="*, auto">
-  <ScrollView row="0">
-    <StackLayout>
-      <GridLayout columns="*, auto" rows="auto" class="row-layout">
-        <CheckBox col="0" #CB1 text="Physical activity" [(ngModel)]="activity" boxType="square" class='h2 component-spacing'></CheckBox>
-        <DatePicker col="1" [date]="dateInput" (dateChange)="onDateChange($event)" class='date-picker'></DatePicker>
-      </GridLayout>
-
-      <GridLayout columns="auto, *, auto" rows="auto" class="row-layout">
-        <Label col="0" text="Food: " class="title"></Label>
-        <Label col="1" text="Last meal time: " class="time-label"></Label>
-        <TimePicker
-          class='time-picker'
-          col="2"
-          [hour]="lastMealTimeHour"
-          [minute]="lastMealTimeMinute"
-          (timeChange)="onTimeChange($event)">
-        </TimePicker>
-      </GridLayout>
-
-  <TextView
-    class='component-spacing textField'
-    [text]="foodInput"
-    (textChange)="onTextValueChange($event, TextFieldEnum.FOOD)"
-    hint="Enter food items, separated by commas">
-  </TextView>
-  <Label text="Drinks: " class="title"></Label>
-  <TextView
-    class='component-spacing textField'
-    [text]="drinksInput"
-    (textChange)="onTextValueChange($event, TextFieldEnum.DRINKS)"
-    hint="Enter drinks, separated by commas">
-  </TextView>
-  <Label text="Medication: " class="title"></Label>
-  <TextView
-    class='component-spacing textField'
-    [text]="medication"
-    (textChange)="onTextValueChange($event, TextFieldEnum.MEDS)"
-    hint="Enter medication, separated by commas">
-  </TextView>
-
-  <Label [text]="'Rate your sleep quality: ' + sleepQuality" class="h2 component-spacing"></Label>
-  <Slider
-    class="slider-margins"
-    minValue="0"
-    [value]=sleepQuality
-    maxValue="10"
-    step="1"
-    (valueChange)="onSleepSliderChange($event)"
-    ></Slider>
-  <Label [text]="'Rate stomach pain: ' + stomach" class="h2 component-spacing"></Label>
-  <Slider
-    class="slider-margins"
-    minValue="0"
-    [value]=stomach
-    maxValue="10"
-    step="1"
-    (valueChange)="onStomachSliderChange($event)"
-    ></Slider>
-</StackLayout>
-    </ScrollView>
-  <Button row="1" (tap)="saveEntry()">
-    <FormattedString>
-      <Span class="fas" text="&#xf0c7; "></Span>
-      <Span class="button" text="Save"></Span>
-    </FormattedString>
-  </Button>
-</GridLayout>
-
+<ion-modal [isOpen]="diaryStore.isAddEntryModalOpen()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Modal</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="diaryStore.setAddEntryModalState(false)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
+          reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
+          dicta.
+        </p>
+      </ion-content>
+    </ng-template>
+  </ion-modal>>
+<!-- <ActionBar title="Add entry"></ActionBar> -->
+<!---->
+<!-- <GridLayout rows="*, auto"> -->
+<!--   <ScrollView row="0"> -->
+<!--     <StackLayout> -->
+<!--       <GridLayout columns="*, auto" rows="auto" class="row-layout"> -->
+<!--         <CheckBox col="0" #CB1 text="Physical activity" [(ngModel)]="activity" boxType="square" class='h2 component-spacing'></CheckBox> -->
+<!--         <DatePicker col="1" [date]="dateInput" (dateChange)="onDateChange($event)" class='date-picker'></DatePicker> -->
+<!--       </GridLayout> -->
+<!---->
+<!--       <GridLayout columns="auto, *, auto" rows="auto" class="row-layout"> -->
+<!--         <Label col="0" text="Food: " class="title"></Label> -->
+<!--         <Label col="1" text="Last meal time: " class="time-label"></Label> -->
+<!--         <TimePicker -->
+<!--           class='time-picker' -->
+<!--           col="2" -->
+<!--           [hour]="lastMealTimeHour" -->
+<!--           [minute]="lastMealTimeMinute" -->
+<!--           (timeChange)="onTimeChange($event)"> -->
+<!--         </TimePicker> -->
+<!--       </GridLayout> -->
+<!---->
+<!--       <Button text="prompt" (tap)="showPrompt()"></Button> -->
+<!--   <TextView -->
+<!--     class='component-spacing textField' -->
+<!--     [text]="foodInput" -->
+<!--     (textChange)="onTextValueChange($event, TextFieldEnum.FOOD)" -->
+<!--     hint="Enter food items, separated by commas"> -->
+<!--   </TextView> -->
+<!--   <Label text="Drinks: " class="title"></Label> -->
+<!--   <TextView -->
+<!--     class='component-spacing textField' -->
+<!--     [text]="drinksInput" -->
+<!--     (textChange)="onTextValueChange($event, TextFieldEnum.DRINKS)" -->
+<!--     hint="Enter drinks, separated by commas"> -->
+<!--   </TextView> -->
+<!--   <Label text="Medication: " class="title"></Label> -->
+<!--   <TextView -->
+<!--     class='component-spacing textField' -->
+<!--     [text]="medication" -->
+<!--     (textChange)="onTextValueChange($event, TextFieldEnum.MEDS)" -->
+<!--     hint="Enter medication, separated by commas"> -->
+<!--   </TextView> -->
+<!---->
+<!--   <Label [text]="'Rate your sleep quality: ' + sleepQuality" class="h2 component-spacing"></Label> -->
+<!--   <Slider -->
+<!--     class="slider-margins" -->
+<!--     minValue="0" -->
+<!--     [value]=sleepQuality -->
+<!--     maxValue="10" -->
+<!--     step="1" -->
+<!--     (valueChange)="onSleepSliderChange($event)" -->
+<!--     ></Slider> -->
+<!--   <Label [text]="'Rate stomach pain: ' + stomach" class="h2 component-spacing"></Label> -->
+<!--   <Slider -->
+<!--     class="slider-margins" -->
+<!--     minValue="0" -->
+<!--     [value]=stomach -->
+<!--     maxValue="10" -->
+<!--     step="1" -->
+<!--     (valueChange)="onStomachSliderChange($event)" -->
+<!--     ></Slider> -->
+<!-- </StackLayout> -->
+<!--     </ScrollView> -->
+<!--   <Button row="1" (tap)="saveEntry()"> -->
+<!--     <FormattedString> -->
+<!--       <Span class="fas" text="&#xf0c7; "></Span> -->
+<!--       <Span class="button" text="Save"></Span> -->
+<!--     </FormattedString> -->
+<!--   </Button> -->
+<!-- </GridLayout> -->
+<!---->

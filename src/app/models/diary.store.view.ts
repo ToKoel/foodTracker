@@ -10,11 +10,12 @@ export interface DiaryViewItem extends DiaryEntry {
 
 export function createDiaryView(diaryEntries: DiaryEntry[]): DiaryViewItem[] {
   const items = diaryEntries.reduce((acc, current) => {
+    console.log(current);
     const average = (current.stomach + (10 - current.sleepQuality)) / 2;
     acc.push({
       ...current,
       average,
-      summary: current.food.join(', '),
+      summary: current.food!.join(', '),
       statusColor: average >= 7 ? 'green' : average <= 3 ? 'red' : 'white',
     });
     return acc;
@@ -33,4 +34,5 @@ export function getCurrentEntry(entryId: string | undefined, entries: DiaryEntry
   if (index !== -1) {
     return entries[index];
   }
+  return undefined;
 }

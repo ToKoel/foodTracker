@@ -1,0 +1,62 @@
+.high-average {
+  background-color: lightcoral;
+}
+
+.low-average {
+  background-color: lightgreen;
+}
+
+.list-item {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.item-text {
+  font-size: 18px;
+}
+
+.status-dot {
+  border-radius: 5;
+  width: 10;
+  height: 10;
+  margin-right: 10;
+}
+
+.header-text {
+  font-weight: bold;
+  font-size: 16;
+}
+
+.summary-text {
+  font-size: 14;
+  color: #666666;
+}
+
+#container {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #8c8c8c;
+
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}

@@ -1,26 +1,46 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "module": "esnext",
-    "target": "ES2020",
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "noEmitHelpers": true,
-    "noEmitOnError": true,
-    "skipLibCheck": true,
-    "lib": ["ESNext", "dom"],
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["src/*"],
-      "@/*": ["src/*"]
-    },
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "types": [
-      "node",
-      "jest"
-    ]
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2022",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "useDefineForClassFields": false
   },
-  "include": ["src/tests/**/*.ts", "src/**/*.ios.ts", "src/**/*.android.ts"],
-  "files": ["./src/main.ts", "./references.d.ts", "./src/polyfills.ts"],
-  "exclude": ["node_modules", "platforms", "e2e"]
+  "include": [
+    "src/tests/**/*.ts",
+    "src/**/*.ios.ts",
+    "src/**/*.android.ts"
+  ],
+  "files": [
+    "./src/main.ts",
+    "./src/polyfills.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "platforms",
+    "e2e"
+  ],
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
 }
