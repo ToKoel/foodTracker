@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonIcon, IonButtons, IonButton } from '@ionic/angular/standalone';
 import { DiaryComponent } from '../../features/diary/diary.component';
 import { addOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
+import { DiaryStore } from 'src/app/models/diary.store';
 
 @Component({
   selector: 'app-diary-page',
@@ -15,4 +16,12 @@ export class DiaryPage {
   constructor() {
     addIcons({ addOutline });
   }
+  diaryStore = inject(DiaryStore);
+
+  addEntry() {
+    this.diaryStore.setAddEntryModalState(true);
+  }
+
 }
+
+

@@ -1,5 +1,3 @@
-@let currentEntry = diaryStore.currentEntry();
-
 <ion-modal [isOpen]="diaryStore.isAddEntryModalOpen()" canDismiss="true">
   <ng-template>
     <ion-header>
@@ -17,16 +15,14 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-    <ion-content *ngIf="currentEntry">
+    <ion-content *ngIf="this.currentEntry">
       <ion-item>
         <ion-list [inset]="true" style="width:100%;">
           <ion-list-header>
             <ion-label class="meal-label"><strong>Meals</strong></ion-label>
-            <ion-button>
-              <ion-icon name="add-outline"></ion-icon>
-            </ion-button>
           </ion-list-header>
-          <ion-item *ngFor="let item of currentEntry.food">
+
+          <ion-item *ngFor="let item of this.currentEntry.food">
             <ion-label>
               <ion-text>{{ item.ingredients.join(",") }}</ion-text>
             </ion-label>
@@ -34,8 +30,30 @@
               <ion-note color="medium">{{ item.time }}</ion-note>
             </div>
           </ion-item>
+
+          <ion-item>
+            <div item-container class="ion-padding-vertical">
+              <ion-input placeholder="Enter ingredients"></ion-input>
+              <ion-item id="time" button detail>
+                <ion-label>{{ this.mealTime | date: 'HH:mm' }}</ion-label>
+              </ion-item>
+            </div>
+            <ion-button>Add</ion-button>
+          </ion-item>
+
         </ion-list>
       </ion-item>
+
+      <ion-popover trigger="time">
+        <ng-template>
+          <ion-datetime
+            presentation="time"
+            [value]="this.mealTime"
+            [preferWheel]="false"
+            (ionChange)="onMealTimeChange($event)">
+          </ion-datetime>
+        </ng-template>
+      </ion-popover>
 
       <ion-item>
         <ion-list [inset]="true" style="width:98%;">
@@ -56,5 +74,7 @@
         </ion-list>
       </ion-item>
     </ion-content>
+    <ion-button expand="block" (click)="saveChanges()">Save</ion-button>
   </ng-template>
+
 </ion-modal>
