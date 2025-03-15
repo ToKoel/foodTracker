@@ -4,7 +4,8 @@ import { DiarySlice, PersistedDiarySlice } from "./diary.slice";
 
 export function updateEntries(entry: DiaryEntry): PartialStateUpdater<DiarySlice> {
   return state => {
-    let entries = state.diaryEntries;
+    console.log(entry);
+    let entries: DiaryEntry[] = state.diaryEntries;
     let updateEntries: DiaryEntry[];
     const index = entries.findIndex(existing => existing.id === entry.id);
     if (index !== -1) {

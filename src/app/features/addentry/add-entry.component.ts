@@ -57,10 +57,6 @@ export class AddEntryComponent {
     this.diaryStore.setAddEntryModalState(false);
   }
 
-  saveChanges() {
-    this.diaryStore.addOrUpdateEntry(this.currentEntry!);
-  }
-
   addFoodEntry() {
     this.addEntryStore.addFoodEntry(this.mealInput, this.mealTime);
     this.mealInput = "";
