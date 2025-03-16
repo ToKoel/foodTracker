@@ -11,6 +11,15 @@ export function removeFoodEntry(id: number): PartialStateUpdater<AddEntrySlice> 
   }
 }
 
+export function removeDrinksEntry(id: number): PartialStateUpdater<AddEntrySlice> {
+  return state => {
+    let drinks: DrinkEntry[] = state.drinks.filter(entry => entry.id !== id);
+    return {
+      drinks: [...drinks]
+    }
+  }
+}
+
 export function foodEntryUpdater(id: number | undefined, ingredients: string, mealTime: string): PartialStateUpdater<AddEntrySlice> {
   return state => {
     let entries: FoodEntry[] = state.food;

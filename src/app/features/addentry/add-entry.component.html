@@ -72,14 +72,29 @@
           <ion-list-header>
             <ion-label class="meal-label"><strong>Drinks</strong></ion-label>
           </ion-list-header>
-          <ion-item *ngFor="let item of this.addEntryStore.drinks()">
-            <ion-label>
-              <ion-text>{{ item.name }}</ion-text>
-            </ion-label>
-            <div class="metadata-end-wrapper" slot="end">
-              <ion-note>{{ item.quantity }}</ion-note>
-            </div>
-          </ion-item>
+
+          <ion-item-sliding *ngFor="let item of this.addEntryStore.drinks()">
+            <ion-item>
+              <ion-label>
+                <ion-text>{{ item.name }}</ion-text>
+              </ion-label>
+              <div class="metadata-end-wrapper" slot="end">
+                <ion-note>{{ item.quantity }}</ion-note>
+              </div>
+            </ion-item>
+
+            <ion-item-options>
+              <ion-item-option color="danger">
+                <ion-icon
+                  slot="icon-only"
+                  name="trash-outline"
+                  button
+                  (click)="addEntryStore.removeDrinksEntry(item.id)">
+                </ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+
           <ion-item>
             <div>
               <ion-input placeholder="Enter ingredients" [(ngModel)]="this.drinksInput"></ion-input>
