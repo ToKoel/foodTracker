@@ -14,7 +14,7 @@ const initialSlice: AddEntrySlice = {
   sleepQuality: 5,
   stomach: 5,
   date: new Date().toISOString(),
-  id: new Date().toISOString(),
+  id: "-1",
   sleepTime: new Date().toISOString(),
 };
 
@@ -31,8 +31,9 @@ export const AddEntryStore = signalStore(
       setSleepQuality: (level: number) => patchState(store, setSleepQuality(level)),
       setDate: (date: string) => patchState(store, setDate(date)),
       saveChanges: () => {
+        const id = store.id() === "-1" ? "" + diaryStore.diaryEntries().length + 1 : store.id();
         const diaryEntry: DiaryEntry = {
-          id: store.id(),
+          id,
           food: store.food(),
           drinks: store.drinks(),
           medication: store.medication(),
@@ -42,7 +43,6 @@ export const AddEntryStore = signalStore(
           date: store.date(),
           sleepTime: store.sleepTime(),
         };
-        console.log(diaryEntry);
         diaryStore.addOrUpdateEntry(diaryEntry);
         diaryStore.setAddEntryModalState(false);
       }

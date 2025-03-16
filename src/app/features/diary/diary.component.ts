@@ -23,7 +23,6 @@ export class DiaryComponent {
   }
 
   onItemClick(itemId: string) {
-    console.log(itemId);
     this.diaryStore.setSelected(itemId);
     this.diaryStore.setAddEntryModalState(true);
   }

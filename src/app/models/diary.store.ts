@@ -2,7 +2,7 @@ import { patchState, signalStore, withComputed, withHooks, withProps } from "@ng
 import { initialDiaryState, PersistedDiarySlice } from "./diary.slice"
 import { withState, withMethods } from "@ngrx/signals"
 import { DiaryEntry } from "./diary-entry.model"
-import { saveToFile, setAddEntryModalState, updateEntries, updateSelected } from "./diary.store.updaters"
+import { removeEntry, saveToFile, setAddEntryModalState, updateEntries, updateSelected } from "./diary.store.updaters"
 import { computed, effect, inject, Signal } from "@angular/core"
 import { createDiaryView, getCurrentEntry } from "./diary.store.view"
 import { shareAppState } from "./diary.store.helpers"
@@ -27,7 +27,7 @@ export const DiaryStore = signalStore(
     setSelected: (id: string) => patchState(store, updateSelected(id)),
     export: () => shareAppState(store.diaryEntries()),
     setAddEntryModalState: (isOpen: boolean) => patchState(store, setAddEntryModalState(isOpen)),
-    removeEntry: (id: string | undefined) => patchState(store, setAddEntryModalState(false)),
+    removeEntry: (id: string) => patchState(store, removeEntry(id)),
   })),
   withHooks(store => ({
     onInit() {

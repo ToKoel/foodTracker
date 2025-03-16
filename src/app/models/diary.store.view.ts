@@ -9,7 +9,7 @@ export interface DiaryViewItem extends DiaryEntry {
 
 
 export function createDiaryView(diaryEntries: DiaryEntry[]): DiaryViewItem[] {
-  const items = diaryEntries.reduce((acc, current) => {
+  let items = diaryEntries.reduce((acc, current) => {
     console.log(current);
     const average = (current.stomach + (10 - current.sleepQuality)) / 2;
     acc.push({
@@ -21,6 +21,7 @@ export function createDiaryView(diaryEntries: DiaryEntry[]): DiaryViewItem[] {
     return acc;
   }, [] as DiaryViewItem[]);
 
+  items = items.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
   return items;
 }
 

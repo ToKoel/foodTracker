@@ -4,7 +4,6 @@ import { DiarySlice, PersistedDiarySlice } from "./diary.slice";
 
 export function updateEntries(entry: DiaryEntry): PartialStateUpdater<DiarySlice> {
   return state => {
-    console.log(entry);
     let entries: DiaryEntry[] = state.diaryEntries;
     let updateEntries: DiaryEntry[];
     const index = entries.findIndex(existing => existing.id === entry.id);
@@ -41,7 +40,16 @@ export function saveToFile(diaryFile: File, persistedValue: PersistedDiarySlice)
   //   });
 }
 
+export function removeEntry(id: string): PartialStateUpdater<DiarySlice> {
+  return state => {
+    const filtered = state.diaryEntries.filter(entry => entry.id !== id);
+    return {
+      diaryEntries: [...filtered],
+      isAddEntryModalOpen: false
+    }
+  }
+}
+
 export function updateSelected(id: string): PartialStateUpdater<DiarySlice> {
-  console.log("updating selected, ", id);
   return _ => ({ selectedId: id });
 }

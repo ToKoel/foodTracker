@@ -9,7 +9,7 @@
           </ion-button>
         </ion-buttons>
         <ion-buttons slot="secondary">
-          <ion-button (click)="diaryStore.removeEntry(addEntryStore.id())">
+          <ion-button (click)="diaryStore.removeEntry(this.addEntryStore.id())">
             <ion-icon name="trash-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -167,7 +167,7 @@
         <ion-icon slot="end" name="happy-outline"></ion-icon>
       </ion-range>
     </ion-content>
-    <ion-button expand="block" (click)="this.addEntryStore.saveChanges()">Save</ion-button>
+    <ion-button expand="block" (click)="this.saveChanges()">Save</ion-button>
   </ng-template>
 
 

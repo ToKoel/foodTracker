@@ -20,6 +20,7 @@ export class DiaryPage {
 
   addEntry() {
     this.diaryStore.setAddEntryModalState(true);
+    this.diaryStore.setSelected("-1");
   }
 
 }

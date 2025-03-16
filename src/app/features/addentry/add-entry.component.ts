@@ -61,6 +61,18 @@ export class AddEntryComponent {
   cancel() {
     this.modal.dismiss(null, 'cancel');
     this.diaryStore.setAddEntryModalState(false);
+    this.resetDates();
+  }
+
+  saveChanges() {
+    this.addEntryStore.saveChanges();
+  }
+
+  resetDates() {
+    const date = new Date().toISOString();
+    this.currentDate = date;
+    this.mealTime = date;
+    this.sleepTime = date;
   }
 
   dateChanged() {
