@@ -4,7 +4,6 @@ import { FormsModule } from "@angular/forms";
 import { IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonListHeader, IonModal, IonNote, IonPopover, IonRange, IonText, IonTitle, IonToolbar, RangeCustomEvent } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { addOutline, closeOutline, happyOutline, sadOutline, trashOutline } from "ionicons/icons";
-import { DiaryEntry } from "../../models/diary-entry.model";
 import { DiaryStore } from "../../models/diary.store";
 import { AddEntryStore } from "./store/add-entry.store";
 
@@ -62,6 +61,10 @@ export class AddEntryComponent {
   cancel() {
     this.modal.dismiss(null, 'cancel');
     this.diaryStore.setAddEntryModalState(false);
+  }
+
+  dateChanged() {
+    this.addEntryStore.setDate(this.currentDate);
   }
 
   onSliderChange(component: string, event: RangeCustomEvent) {

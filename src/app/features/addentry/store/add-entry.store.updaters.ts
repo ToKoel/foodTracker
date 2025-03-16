@@ -28,6 +28,10 @@ export function setStomachPain(stomach: number): PartialStateUpdater<AddEntrySli
   return state => ({ stomach })
 }
 
+export function setDate(date: string): PartialStateUpdater<AddEntrySlice> {
+  return state => ({ date })
+}
+
 export function foodEntryUpdater(id: number | undefined, ingredients: string, mealTime: string): PartialStateUpdater<AddEntrySlice> {
   return state => {
     let entries: FoodEntry[] = state.food;

@@ -2,7 +2,7 @@
   <ng-template>
     <ion-header>
       <ion-toolbar>
-        <ion-title>{{ this.addEntryStore.date() | date: 'dd.MM.yyyy' }}</ion-title>
+        <ion-title id="date">{{ this.currentDate | date: 'dd.MM.yyyy' }}</ion-title>
         <ion-buttons slot="primary" class='ion-button'>
           <ion-button (click)="diaryStore.setAddEntryModalState(false)">
             <ion-icon name="close-outline"></ion-icon>
@@ -15,6 +15,17 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
+
+      <ion-popover trigger="date">
+        <ng-template>
+          <ion-datetime
+            presentation="date"
+            (ionChange)="this.dateChanged()"
+            [(ngModel)]="this.currentDate">
+          </ion-datetime>
+        </ng-template>
+      </ion-popover>
+
     <ion-content>
       <ion-item>
         <ion-list [inset]="true" style="width:100%;">
