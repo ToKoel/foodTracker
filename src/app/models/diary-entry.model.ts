@@ -11,11 +11,13 @@ export interface DiaryEntry {
 }
 
 export interface FoodEntry {
+  id: number,
   time: string,
   ingredients: string[]
 }
 
 export interface DrinkEntry {
+  id: number,
   name: string,
-  quantity?: number
+  quantity: number
 }

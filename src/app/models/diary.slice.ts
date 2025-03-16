@@ -14,9 +14,9 @@ export const initialDiaryState: DiarySlice = {
     sleepQuality: 2,
     stomach: 3,
     id: "1",
-    food: [{ ingredients: ["test", "test2"], time: "2025-03-12T10:10" },
-    { ingredients: ["test3"], time: "2025-03-12T12:15" }],
-    drinks: [{ name: "Cappuccino", quantity: 2 }],
+    food: [{ id: 1, ingredients: ["test", "test2"], time: "2025-03-12T10:10" },
+    { id: 2, ingredients: ["test3"], time: "2025-03-12T12:15" }],
+    drinks: [{ id: 1, name: "Cappuccino", quantity: 2 }],
     activity: false,
     medication: ["meds"]
   }

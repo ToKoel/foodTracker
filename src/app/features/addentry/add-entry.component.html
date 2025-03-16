@@ -9,7 +9,7 @@
           </ion-button>
         </ion-buttons>
         <ion-buttons slot="secondary">
-          <ion-button (click)="diaryStore.removeEntry(currentEntry?.id)">
+          <ion-button (click)="diaryStore.removeEntry(addEntryStore.id())">
             <ion-icon name="trash-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -32,11 +32,13 @@
           </ion-item>
 
           <ion-item>
-              <ion-item id="time" button detail style="width:40%">
-                <ion-label>{{ this.mealTime | date: 'HH:mm' }}</ion-label>
-              </ion-item>
+            <div>
               <ion-input placeholder="Enter ingredients" [(ngModel)]="this.mealInput"></ion-input>
-            <ion-button (click)="addFoodEntry()">Add</ion-button>
+              <ion-button (click)="addFoodEntry()">Add</ion-button>
+            </div>
+            <div class="metadata-end-wrapper" slot="end">
+              <ion-note color="primary" id="time">{{ this.mealTime | date: 'HH:mm' }}</ion-note>
+            </div>
           </ion-item>
 
         </ion-list>
@@ -56,9 +58,6 @@
         <ion-list [inset]="true" style="width:98%;">
           <ion-list-header>
             <ion-label class="meal-label"><strong>Drinks</strong></ion-label>
-            <ion-button>
-              <ion-icon name="add-outline"></ion-icon>
-            </ion-button>
           </ion-list-header>
           <ion-item *ngFor="let item of this.addEntryStore.drinks()">
             <ion-label>
@@ -68,8 +67,24 @@
               <ion-note>{{ item.quantity }}</ion-note>
             </div>
           </ion-item>
+          <ion-item>
+            <div>
+              <ion-input placeholder="Enter ingredients" [(ngModel)]="this.drinksInput"></ion-input>
+              <ion-button (click)="addDrinksEntry()">Add</ion-button>
+            </div>
+            <div class="metadata-end-wrapper" slot="end">
+              <ion-note id="quantity" color="primary">{{ this.drinksQuantity }}</ion-note>
+            </div>
+          </ion-item>
+
         </ion-list>
       </ion-item>
+
+      <ion-popover trigger="quantity">
+        <ng-template>
+          <ion-input type="number" [(ngModel)]="drinksQuantity"></ion-input>
+        </ng-template>
+      </ion-popover>
     </ion-content>
     <ion-button expand="block" (click)="this.addEntryStore.saveChanges()">Save</ion-button>
   </ng-template>

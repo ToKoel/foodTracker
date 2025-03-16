@@ -38,7 +38,7 @@ import { AddEntryStore } from "./store/add-entry.store";
 export class AddEntryComponent {
   @ViewChild(IonModal) modal!: IonModal;
   _vcRef = inject(ViewContainerRef);
-  currentEntry: DiaryEntry | undefined;
+
 
   mealTime = new Date().toISOString();
   mealInput = "";
@@ -58,15 +58,15 @@ export class AddEntryComponent {
   }
 
   addFoodEntry() {
-    this.addEntryStore.addFoodEntry(this.mealInput, this.mealTime);
+    this.addEntryStore.addFoodEntry(undefined, this.mealInput, this.mealTime);
     this.mealInput = "";
     this.mealTime = new Date().toISOString();
   }
 
-  onStomachSliderChange(event: any) {
-  }
-
-  onSleepSliderChange(event: any) {
+  addDrinksEntry() {
+    this.addEntryStore.addDrinksEntry(undefined, this.drinksInput, this.drinksQuantity);
+    this.drinksInput = "";
+    this.drinksQuantity = 1;
   }
 }
 

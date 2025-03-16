@@ -2,7 +2,7 @@ import { signalStore, withState, withHooks, patchState, withMethods } from "@ngr
 import { FoodEntry, DrinkEntry, DiaryEntry } from "../../../../app/models/diary-entry.model"
 import { DiaryStore } from "src/app/models/diary.store";
 import { inject, effect } from "@angular/core";
-import { foodEntryUpdater } from "./add-entry.store.updaters";
+import { drinksEntryUpdater, foodEntryUpdater } from "./add-entry.store.updaters";
 
 export interface AddEntrySlice {
   food: FoodEntry[],
@@ -31,7 +31,8 @@ export const AddEntryStore = signalStore(
   withMethods(store => {
     const diaryStore = inject(DiaryStore);
     return {
-      addFoodEntry: (ingredients: string, mealTime: string) => patchState(store, foodEntryUpdater(ingredients, mealTime)),
+      addFoodEntry: (id: number | undefined, ingredients: string, mealTime: string) => patchState(store, foodEntryUpdater(id, ingredients, mealTime)),
+      addDrinksEntry: (id: number | undefined, drinks: string, drinksQuantity: number) => patchState(store, drinksEntryUpdater(id, drinks, drinksQuantity)),
       saveChanges: () => {
         const diaryEntry: DiaryEntry = {
           id: store.id(),
