@@ -3,21 +3,21 @@ import { initialDiaryState, PersistedDiarySlice } from "./diary.slice"
 import { withState, withMethods } from "@ngrx/signals"
 import { DiaryEntry } from "./diary-entry.model"
 import { saveToFile, setAddEntryModalState, updateEntries, updateSelected } from "./diary.store.updaters"
-import { computed, effect, Signal } from "@angular/core"
+import { computed, effect, inject, Signal } from "@angular/core"
 import { createDiaryView, getCurrentEntry } from "./diary.store.view"
 import { shareAppState } from "./diary.store.helpers"
+import { Storage } from "@ionic/storage-angular"
+import { toSignal } from '@angular/core/rxjs-interop';
+import { from, Observable } from 'rxjs';
+import { map, shareReplay, switchMap, take, tap } from 'rxjs/operators';
+import { Directory, Encoding, Filesystem } from "@capacitor/filesystem"
+import { rxMethod } from "@ngrx/signals/rxjs-interop";
+
 
 
 export const DiaryStore = signalStore(
   { providedIn: 'root' },
   withState(initialDiaryState),
-  withProps(_ => {
-    // const _documentsFolder = knownFolders.documents();
-    // const _filePath = path.join(_documentsFolder.path, 'diaryEntries.json');
-    return {
-      _diaryFile: ""
-    }
-  }),
   withComputed(store => ({
     diaryView: computed(() => createDiaryView(store.diaryEntries())),
     currentEntry: computed(() => getCurrentEntry(store.selectedId(), store.diaryEntries())),
@@ -34,22 +34,29 @@ export const DiaryStore = signalStore(
   })),
   withHooks(store => ({
     onInit() {
-      const persisted: Signal<PersistedDiarySlice> = computed(() => ({
-        diaryEntries: store.diaryEntries(),
-      }));
+      const readFile = async () => {
+        const contents = await Filesystem.readFile({
+          path: 'data.json',
+          directory: Directory.Documents,
+          encoding: Encoding.UTF8,
+        });
+        if (contents.data) {
+          const diaryEntries = JSON.parse(contents.data as string) as DiaryEntry[];
+          patchState(store, { diaryEntries: diaryEntries });
+        }
+      };
+      readFile();
 
-      // store._diaryFile.readText()
-      //   .then((content) => {
-      //     const diaryEntries = JSON.parse(content) as PersistedDiarySlice;
-      //     patchState(store, diaryEntries);
-      //   })
-      //   .catch((error) => {
-      //     console.log('Error reading diary entries:', error);
-      //   });
-      //
-      // effect(() => {
-      //   saveToFile(store._diaryFile, persisted());
-      // });
+      effect(() => {
+        Filesystem.writeFile({
+          path: 'data.json',
+          data: JSON.stringify(store.diaryEntries()),
+          directory: Directory.Documents,
+          encoding: Encoding.UTF8,
+        }).then(result => {
+          console.log(result.uri);
+        });
+      })
     }
   }))
 )

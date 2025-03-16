@@ -42,8 +42,9 @@ export class AddEntryComponent {
   @ViewChild(IonModal) modal!: IonModal;
   _vcRef = inject(ViewContainerRef);
 
+  currentDate = new Date().toISOString();
 
-  mealTime = new Date().toISOString();
+  mealTime = this.currentDate;
   mealInput = "";
   drinksInput = "";
   drinksQuantity = 1;
@@ -63,7 +64,7 @@ export class AddEntryComponent {
   addFoodEntry() {
     this.addEntryStore.addFoodEntry(undefined, this.mealInput, this.mealTime);
     this.mealInput = "";
-    this.mealTime = new Date().toISOString();
+    this.mealTime = this.currentDate;
   }
 
   addDrinksEntry() {

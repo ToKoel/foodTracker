@@ -48,6 +48,7 @@ export const AddEntryStore = signalStore(
         };
         console.log(diaryEntry);
         diaryStore.addOrUpdateEntry(diaryEntry);
+        diaryStore.setAddEntryModalState(false);
       }
     }
   }),

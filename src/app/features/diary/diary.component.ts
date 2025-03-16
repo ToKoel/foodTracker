@@ -32,5 +32,4 @@ export class DiaryComponent {
     this.diaryStore.export();
   }
 
-
 }
