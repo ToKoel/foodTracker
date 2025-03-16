@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, ViewChild, ViewContainerRef } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonListHeader, IonModal, IonNote, IonPopover, IonText, IonTitle, IonToolbar } from "@ionic/angular/standalone";
+import { IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonListHeader, IonModal, IonNote, IonPopover, IonText, IonTitle, IonToolbar } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { addOutline, closeOutline, trashOutline } from "ionicons/icons";
 import { DiaryEntry } from "../../models/diary-entry.model";
@@ -33,6 +33,9 @@ import { AddEntryStore } from "./store/add-entry.store";
     IonTitle,
     IonToolbar,
     IonListHeader,
+    IonItemOptions,
+    IonItemOption,
+    IonItemSliding
   ],
 })
 export class AddEntryComponent {

@@ -2,6 +2,14 @@ import { PartialStateUpdater } from "@ngrx/signals";
 import { AddEntrySlice } from "../store/add-entry.store";
 import { DrinkEntry, FoodEntry } from "src/app/models/diary-entry.model";
 
+export function removeFoodEntry(id: number): PartialStateUpdater<AddEntrySlice> {
+  return state => {
+    let entries: FoodEntry[] = state.food.filter(entry => entry.id !== id);
+    return {
+      food: [...entries]
+    }
+  }
+}
 
 export function foodEntryUpdater(id: number | undefined, ingredients: string, mealTime: string): PartialStateUpdater<AddEntrySlice> {
   return state => {
