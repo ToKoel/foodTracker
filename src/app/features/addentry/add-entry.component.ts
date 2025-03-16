@@ -43,13 +43,13 @@ export class AddEntryComponent {
   _vcRef = inject(ViewContainerRef);
 
   currentDate = new Date().toISOString();
-
-  mealTime = this.currentDate;
+  mealTime = new Date().toISOString();
   mealInput = "";
   drinksInput = "";
   drinksQuantity = 1;
   stomach = 5;
   sleepQuality = 5;
+  sleepTime = new Date().toISOString();
 
   addEntryStore = inject(AddEntryStore);
   diaryStore = inject(DiaryStore);
@@ -78,7 +78,7 @@ export class AddEntryComponent {
   addFoodEntry() {
     this.addEntryStore.addFoodEntry(undefined, this.mealInput, this.mealTime);
     this.mealInput = "";
-    this.mealTime = this.currentDate;
+    this.mealTime = new Date().toISOString();
   }
 
   addDrinksEntry() {

@@ -4,16 +4,7 @@ import { DiaryStore } from "src/app/models/diary.store";
 import { inject, effect } from "@angular/core";
 import { drinksEntryUpdater, removeDrinksEntry, foodEntryUpdater, removeFoodEntry, setStomachPain, setSleepQuality, setDate } from "./add-entry.store.updaters";
 
-export interface AddEntrySlice {
-  food: FoodEntry[],
-  drinks: DrinkEntry[],
-  medication: string[],
-  activity: boolean,
-  sleepQuality: number,
-  stomach: number,
-  date: string,
-  id: string,
-}
+export interface AddEntrySlice extends DiaryEntry { }
 
 const initialSlice: AddEntrySlice = {
   food: [] as FoodEntry[],
@@ -24,6 +15,7 @@ const initialSlice: AddEntrySlice = {
   stomach: 5,
   date: new Date().toISOString(),
   id: new Date().toISOString(),
+  sleepTime: new Date().toISOString(),
 };
 
 export const AddEntryStore = signalStore(
@@ -48,6 +40,7 @@ export const AddEntryStore = signalStore(
           sleepQuality: store.sleepQuality(),
           stomach: store.stomach(),
           date: store.date(),
+          sleepTime: store.sleepTime(),
         };
         console.log(diaryEntry);
         diaryStore.addOrUpdateEntry(diaryEntry);

@@ -2,7 +2,7 @@
   <ng-template>
     <ion-header>
       <ion-toolbar>
-        <ion-title id="date">{{ this.currentDate | date: 'dd.MM.yyyy' }}</ion-title>
+        <ion-title id="date">{{ this.addEntryStore.date() | date: 'dd.MM.yyyy' }}</ion-title>
         <ion-buttons slot="primary" class='ion-button'>
           <ion-button (click)="diaryStore.setAddEntryModalState(false)">
             <ion-icon name="close-outline"></ion-icon>
@@ -27,6 +27,11 @@
       </ion-popover>
 
     <ion-content>
+      <ion-item id="sleep-time">
+        <ion-label>Sleep time</ion-label>
+        <ion-note color="primary">{{ this.sleepTime | date: 'HH:mm' }}</ion-note>
+      </ion-item>
+
       <ion-item>
         <ion-list [inset]="true" style="width:100%;">
           <ion-list-header>
@@ -73,6 +78,16 @@
           <ion-datetime
             presentation="time"
             [(ngModel)]="this.mealTime"
+            [preferWheel]="false">
+          </ion-datetime>
+        </ng-template>
+      </ion-popover>
+
+      <ion-popover trigger="sleep-time">
+        <ng-template>
+          <ion-datetime
+            presentation="time"
+            [(ngModel)]="this.sleepTime"
             [preferWheel]="false">
           </ion-datetime>
         </ng-template>

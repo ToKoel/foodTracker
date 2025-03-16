@@ -1,13 +1,13 @@
 export interface DiaryEntry {
   id: string;
   date: string;
-  food?: FoodEntry[];
-  drinks?: DrinkEntry[];
-  medication?: string[];
+  food: FoodEntry[];
+  drinks: DrinkEntry[];
+  medication: string[];
   stomach: number;
   sleepQuality: number;
-  lastMealTime?: string;
-  activity?: boolean;
+  sleepTime: string;
+  activity: boolean;
 }
 
 export interface FoodEntry {
