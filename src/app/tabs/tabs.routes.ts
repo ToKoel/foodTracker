@@ -12,6 +12,11 @@ export const routes: Routes = [
           import('./diary-tab/diary.page').then((m) => m.DiaryPage),
       },
       {
+        path: 'tab2',
+        loadComponent: () =>
+          import('./statistics-tab/statistics.page').then((m) => m.StatisticsPage),
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full',
