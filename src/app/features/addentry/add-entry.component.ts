@@ -1,9 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, ViewChild, ViewContainerRef } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonListHeader, IonModal, IonNote, IonPopover, IonText, IonTitle, IonToolbar } from "@ionic/angular/standalone";
+import { IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonListHeader, IonModal, IonNote, IonPopover, IonRange, IonText, IonTitle, IonToolbar, RangeCustomEvent } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
-import { addOutline, closeOutline, trashOutline } from "ionicons/icons";
+import { addOutline, closeOutline, happyOutline, sadOutline, trashOutline } from "ionicons/icons";
 import { DiaryEntry } from "../../models/diary-entry.model";
 import { DiaryStore } from "../../models/diary.store";
 import { AddEntryStore } from "./store/add-entry.store";
@@ -35,7 +35,8 @@ import { AddEntryStore } from "./store/add-entry.store";
     IonListHeader,
     IonItemOptions,
     IonItemOption,
-    IonItemSliding
+    IonItemSliding,
+    IonRange,
   ],
 })
 export class AddEntryComponent {
@@ -48,17 +49,27 @@ export class AddEntryComponent {
   mealInput = "";
   drinksInput = "";
   drinksQuantity = 1;
+  stomach = 5;
+  sleepQuality = 5;
 
   addEntryStore = inject(AddEntryStore);
   diaryStore = inject(DiaryStore);
 
   constructor() {
-    addIcons({ addOutline, closeOutline, trashOutline });
+    addIcons({ happyOutline, sadOutline, addOutline, closeOutline, trashOutline });
   }
 
   cancel() {
     this.modal.dismiss(null, 'cancel');
     this.diaryStore.setAddEntryModalState(false);
+  }
+
+  onSliderChange(component: string, event: RangeCustomEvent) {
+    if (component === "stomach") {
+      this.addEntryStore.setStomachPain(this.stomach);
+    } else {
+      this.addEntryStore.setSleepQuality(this.sleepQuality);
+    }
   }
 
   addFoodEntry() {

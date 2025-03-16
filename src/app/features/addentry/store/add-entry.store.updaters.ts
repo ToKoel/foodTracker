@@ -20,6 +20,14 @@ export function removeDrinksEntry(id: number): PartialStateUpdater<AddEntrySlice
   }
 }
 
+export function setSleepQuality(sleepQuality: number): PartialStateUpdater<AddEntrySlice> {
+  return state => ({ sleepQuality })
+}
+
+export function setStomachPain(stomach: number): PartialStateUpdater<AddEntrySlice> {
+  return state => ({ stomach })
+}
+
 export function foodEntryUpdater(id: number | undefined, ingredients: string, mealTime: string): PartialStateUpdater<AddEntrySlice> {
   return state => {
     let entries: FoodEntry[] = state.food;

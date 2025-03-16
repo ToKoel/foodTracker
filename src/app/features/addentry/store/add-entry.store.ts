@@ -2,7 +2,8 @@ import { signalStore, withState, withHooks, patchState, withMethods } from "@ngr
 import { FoodEntry, DrinkEntry, DiaryEntry } from "../../../../app/models/diary-entry.model"
 import { DiaryStore } from "src/app/models/diary.store";
 import { inject, effect } from "@angular/core";
-import { drinksEntryUpdater, removeDrinksEntry, foodEntryUpdater, removeFoodEntry } from "./add-entry.store.updaters";
+import { drinksEntryUpdater, removeDrinksEntry, foodEntryUpdater, removeFoodEntry, setStomachPain, setSleepQuality } from "./add-entry.store.updaters";
+import { PathLocationStrategy } from "@angular/common";
 
 export interface AddEntrySlice {
   food: FoodEntry[],
@@ -35,6 +36,8 @@ export const AddEntryStore = signalStore(
       addDrinksEntry: (id: number | undefined, drinks: string, drinksQuantity: number) => patchState(store, drinksEntryUpdater(id, drinks, drinksQuantity)),
       removeFoodEntry: (id: number) => patchState(store, removeFoodEntry(id)),
       removeDrinksEntry: (id: number) => patchState(store, removeDrinksEntry(id)),
+      setStomachPain: (level: number) => patchState(store, setStomachPain(level)),
+      setSleepQuality: (level: number) => patchState(store, setSleepQuality(level)),
       saveChanges: () => {
         const diaryEntry: DiaryEntry = {
           id: store.id(),

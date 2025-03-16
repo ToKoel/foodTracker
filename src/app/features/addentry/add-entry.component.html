@@ -113,8 +113,36 @@
           <ion-input type="number" [(ngModel)]="drinksQuantity"></ion-input>
         </ng-template>
       </ion-popover>
+
+      <ion-range
+        labelPlacement="stacked"
+        label="Stomach"
+        class="ion-padding"
+        [ticks]="true"
+        [snaps]="true"
+        [min]="0"
+        [max]="10"
+        [(ngModel)]="stomach"
+        (ionChange)="onSliderChange('stomach', $event)">
+        <ion-icon slot="start" name="sad-outline"></ion-icon>
+        <ion-icon slot="end" name="happy-outline"></ion-icon>
+      </ion-range>
+      <ion-range
+        labelPlacement="stacked"
+        label="Sleep quality"
+        class="ion-padding"
+        [ticks]="true"
+        [snaps]="true"
+        [min]="0"
+        [max]="10"
+        [(ngModel)]="sleepQuality"
+        (ionChange)="onSliderChange('sleep', $event)">
+        <ion-icon slot="start" name="sad-outline"></ion-icon>
+        <ion-icon slot="end" name="happy-outline"></ion-icon>
+      </ion-range>
     </ion-content>
     <ion-button expand="block" (click)="this.addEntryStore.saveChanges()">Save</ion-button>
   </ng-template>
+
 
 </ion-modal>
