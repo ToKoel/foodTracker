@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, ViewChild, ViewContainerRef } from "@angular/core";
+import { Component, effect, inject, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonListHeader, IonModal, IonNote, IonPopover, IonRange, IonText, IonTitle, IonToolbar, RangeCustomEvent } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -41,6 +41,8 @@ import { AddEntryStore } from "./store/add-entry.store";
 export class AddEntryComponent {
   @ViewChild(IonModal) modal!: IonModal;
   _vcRef = inject(ViewContainerRef);
+  addEntryStore = inject(AddEntryStore);
+  diaryStore = inject(DiaryStore);
 
   currentDate = new Date().toISOString();
   mealTime = new Date().toISOString();
@@ -51,11 +53,13 @@ export class AddEntryComponent {
   sleepQuality = 5;
   sleepTime = new Date().toISOString();
 
-  addEntryStore = inject(AddEntryStore);
-  diaryStore = inject(DiaryStore);
 
   constructor() {
     addIcons({ happyOutline, sadOutline, addOutline, closeOutline, trashOutline });
+    effect(() => {
+      this.stomach = this.addEntryStore.stomach();
+      this.sleepQuality = this.addEntryStore.sleepQuality();
+    })
   }
 
   cancel() {

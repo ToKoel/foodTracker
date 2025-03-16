@@ -55,6 +55,7 @@ export const AddEntryStore = signalStore(
         effect(() => {
           const currentEntry = diaryStore.currentEntry();
           if (currentEntry) {
+            console.log("currentEntry: ", currentEntry);
             patchState(store, { ...currentEntry });
           }
         });

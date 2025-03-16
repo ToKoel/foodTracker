@@ -39,6 +39,7 @@ export const DiaryStore = signalStore(
         });
         if (contents.data) {
           const diaryEntries = JSON.parse(contents.data as string) as DiaryEntry[];
+          console.log(diaryEntries);
           patchState(store, { diaryEntries: diaryEntries });
         }
       };

@@ -148,7 +148,7 @@
         [snaps]="true"
         [min]="0"
         [max]="10"
-        [(ngModel)]="stomach"
+        [(ngModel)]="this.stomach"
         (ionChange)="onSliderChange('stomach', $event)">
         <ion-icon slot="start" name="sad-outline"></ion-icon>
         <ion-icon slot="end" name="happy-outline"></ion-icon>
@@ -161,7 +161,7 @@
         [snaps]="true"
         [min]="0"
         [max]="10"
-        [(ngModel)]="sleepQuality"
+        [(ngModel)]="this.sleepQuality"
         (ionChange)="onSliderChange('sleep', $event)">
         <ion-icon slot="start" name="sad-outline"></ion-icon>
         <ion-icon slot="end" name="happy-outline"></ion-icon>
