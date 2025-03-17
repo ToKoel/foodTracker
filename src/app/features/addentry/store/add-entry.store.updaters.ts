@@ -5,6 +5,7 @@ import { AddEntrySlice } from "./add-entry.store";
 export function removeFoodEntry(id: number): PartialStateUpdater<AddEntrySlice> {
   return state => {
     let entries: FoodEntry[] = state.food.filter((entry: FoodEntry) => entry.id !== id);
+    entries = entries.sort((a, b) => Date.parse(a.time) - Date.parse(b.time));
     return {
       food: [...entries]
     }
@@ -49,6 +50,7 @@ export function foodEntryUpdater(id: number | undefined, ingredients: string, me
     } else {
       updateEntries = [...entries, newEntry];
     }
+    updateEntries = updateEntries.sort((a, b) => Date.parse(a.time) - Date.parse(b.time));
     return {
       food: updateEntries
     }
@@ -79,6 +81,11 @@ export function drinksEntryUpdater(id: number | undefined, drink: string, drinks
     } else {
       updateEntries = [...entries, newEntry];
     }
+    updateEntries = updateEntries.sort((a, b) => {
+      if (!a) return -1;
+      if (!b) return 1;
+      return a.name.localeCompare(b.name, undefined, { 'sensitivity': 'base' })
+    });
     return {
       drinks: updateEntries
     }
