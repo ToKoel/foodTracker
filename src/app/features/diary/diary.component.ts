@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject } from "@angular/core";
-import { IonItem, IonLabel, IonList } from "@ionic/angular/standalone";
+import { IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList } from "@ionic/angular/standalone";
 import { DiaryStore } from './store/diary.store';
 import { AddEntryComponent } from "./addentry/add-entry.component";
 
@@ -8,7 +8,7 @@ import { AddEntryComponent } from "./addentry/add-entry.component";
   selector: "diary-component",
   templateUrl: "./diary.component.html",
   styleUrl: "./diary.component.scss",
-  imports: [IonItem, IonLabel, IonList, CommonModule, AddEntryComponent],
+  imports: [IonItemSliding, IonItemOptions, IonItemOption, IonIcon, IonItem, IonLabel, IonList, CommonModule, AddEntryComponent],
 })
 export class DiaryComponent {
   diaryStore = inject(DiaryStore);
