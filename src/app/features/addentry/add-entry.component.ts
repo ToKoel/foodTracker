@@ -4,7 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonListHeader, IonModal, IonNote, IonPopover, IonRange, IonText, IonTitle, IonToolbar, RangeCustomEvent } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
 import { addOutline, closeOutline, happyOutline, sadOutline, trashOutline } from "ionicons/icons";
-import { DiaryStore } from "../../models/diary.store";
+import { DiaryStore } from "../diary/store/diary.store";
 import { AddEntryStore } from "./store/add-entry.store";
 
 @Component({

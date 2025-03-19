@@ -3,7 +3,7 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonIcon, IonButtons, IonBu
 import { DiaryComponent } from '../../features/diary/diary.component';
 import { addOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
-import { DiaryStore } from 'src/app/models/diary.store';
+import { DiaryStore } from '../../features/diary/store/diary.store';
 
 @Component({
   selector: 'app-diary-page',

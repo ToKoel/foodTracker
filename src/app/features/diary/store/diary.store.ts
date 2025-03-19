@@ -1,17 +1,11 @@
-import { patchState, signalStore, withComputed, withHooks, withProps } from "@ngrx/signals"
-import { initialDiaryState, PersistedDiarySlice } from "./diary.slice"
-import { withState, withMethods } from "@ngrx/signals"
-import { DiaryEntry } from "./diary-entry.model"
-import { removeEntry, saveToFile, setAddEntryModalState, updateEntries, updateSelected } from "./diary.store.updaters"
-import { computed, effect, inject, Signal } from "@angular/core"
-import { createDiaryView, getCurrentEntry } from "./diary.store.view"
-import { shareAppState } from "./diary.store.helpers"
-import { Storage } from "@ionic/storage-angular"
-import { toSignal } from '@angular/core/rxjs-interop';
-import { from, Observable } from 'rxjs';
-import { map, shareReplay, switchMap, take, tap } from 'rxjs/operators';
+import { computed, effect } from "@angular/core"
 import { Directory, Encoding, Filesystem } from "@capacitor/filesystem"
-import { rxMethod } from "@ngrx/signals/rxjs-interop";
+import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from "@ngrx/signals"
+import { DiaryEntry } from "./diary-entry.model"
+import { initialDiaryState } from "./diary.slice"
+import { shareAppState } from "./diary.store.helpers"
+import { removeEntry, setAddEntryModalState, updateEntries, updateSelected } from "./diary.store.updaters"
+import { createDiaryView, getCurrentEntry } from "./diary.store.view"
 
 
 
