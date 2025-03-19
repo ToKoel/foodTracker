@@ -1,5 +1,5 @@
 import { PartialStateUpdater } from "@ngrx/signals";
-import { DrinkEntry, FoodEntry } from "../../diary/store/diary-entry.model";
+import { DrinkEntry, FoodEntry } from "../../../diary/store/diary-entry.model";
 import { AddEntrySlice } from "./add-entry.store";
 
 export function removeFoodEntry(id: number): PartialStateUpdater<AddEntrySlice> {

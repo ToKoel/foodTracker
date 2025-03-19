@@ -1,6 +1,6 @@
 import { signalStore, withState, withHooks, patchState, withMethods } from "@ngrx/signals"
-import { FoodEntry, DrinkEntry, DiaryEntry } from "../../diary/store/diary-entry.model"
-import { DiaryStore } from "../../diary/store/diary.store";
+import { FoodEntry, DrinkEntry, DiaryEntry } from "../../../diary/store/diary-entry.model"
+import { DiaryStore } from "../../../diary/store/diary.store";
 import { inject, effect } from "@angular/core";
 import { drinksEntryUpdater, removeDrinksEntry, foodEntryUpdater, removeFoodEntry, setStomachPain, setSleepQuality, setDate } from "./add-entry.store.updaters";
 
