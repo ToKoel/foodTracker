@@ -1,15 +1,18 @@
-<ion-modal [isOpen]="diaryStore.isAddEntryModalOpen()" canDismiss="true">
+@let diaryVm = diaryStore.diaryView();
+@let addEntryVm = addEntryStore.addEntryVm();
+
+<ion-modal [isOpen]="diaryVm.modalOpen" canDismiss="true">
   <ng-template>
     <ion-header>
       <ion-toolbar>
-        <ion-title id="date">{{ this.addEntryStore.date() | date: 'dd.MM.yyyy' }}</ion-title>
+        <ion-title id="date">{{ addEntryVm.date | date: 'dd.MM.yyyy' }}</ion-title>
         <ion-buttons slot="primary" class='ion-button'>
-          <ion-button (click)="diaryStore.setAddEntryModalState(false)">
+          <ion-button (click)="diaryStore.closeAddEntryModal()">
             <ion-icon name="close-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
         <ion-buttons slot="secondary">
-          <ion-button (click)="diaryStore.removeEntry(this.addEntryStore.id())">
+          <ion-button (click)="addEntryStore.removeEntry(addEntryVm.id)">
             <ion-icon name="trash-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -38,7 +41,7 @@
             <ion-label class="meal-label"><strong>Meals</strong></ion-label>
           </ion-list-header>
 
-          <ion-item-sliding *ngFor="let item of this.addEntryStore.food()">
+          <ion-item-sliding *ngFor="let item of addEntryVm.food">
             <ion-item>
               <ion-label>
                 <ion-text>{{ item.ingredients.join(",") }}</ion-text>
@@ -99,7 +102,7 @@
             <ion-label class="meal-label"><strong>Drinks</strong></ion-label>
           </ion-list-header>
 
-          <ion-item-sliding *ngFor="let item of this.addEntryStore.drinks()">
+          <ion-item-sliding *ngFor="let item of addEntryVm.drinks">
             <ion-item>
               <ion-label>
                 <ion-text>{{ item.name }}</ion-text>
@@ -167,7 +170,7 @@
         <ion-icon slot="end" name="happy-outline"></ion-icon>
       </ion-range>
     </ion-content>
-    <ion-button expand="block" (click)="this.saveChanges()">Save</ion-button>
+    <ion-button expand="block" (click)="addEntryStore.saveChanges()">Save</ion-button>
   </ng-template>
 
 

@@ -18,11 +18,6 @@ export class DiaryPage {
   }
   diaryStore = inject(DiaryStore);
 
-  addEntry() {
-    this.diaryStore.setAddEntryModalState(true);
-    this.diaryStore.setSelected("-1");
-  }
-
 }
 
 

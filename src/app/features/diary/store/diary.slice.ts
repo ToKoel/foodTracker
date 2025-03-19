@@ -2,13 +2,15 @@ import { DiaryEntry } from "./diary-entry.model";
 
 export interface DiarySlice {
   diaryEntries: DiaryEntry[],
-  selectedId: string | undefined;
+  selectedId: number | undefined;
   isAddEntryModalOpen: boolean;
+  currentEntry: DiaryEntry | undefined;
 }
 
 export const initialDiaryState: DiarySlice = {
   selectedId: undefined,
   isAddEntryModalOpen: false,
+  currentEntry: undefined,
   diaryEntries: [
     //   {
     //   date: "2025-03-12",

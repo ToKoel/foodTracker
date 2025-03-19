@@ -15,20 +15,20 @@ export class DiaryComponent {
 
   viewEntry(itemTapEvent: any) {
     const itemId = itemTapEvent.view.bindingContext.id;
-    this.diaryStore.setSelected(itemId);
+    // this.diaryStore.setSelected(itemId);
   }
 
   navigateToAddEntry() {
-    this.diaryStore.setSelected('');
+    // this.diaryStore.setSelected('');
   }
 
   onItemClick(itemId: string) {
-    this.diaryStore.setSelected(itemId);
-    this.diaryStore.setAddEntryModalState(true);
+    // this.diaryStore.setSelected(itemId);
+    this.diaryStore.openAddEntryModal();
   }
 
   export() {
-    this.diaryStore.export();
+    // this.diaryStore.export();
   }
 
 }

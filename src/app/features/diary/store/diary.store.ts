@@ -3,25 +3,36 @@ import { Directory, Encoding, Filesystem } from "@capacitor/filesystem"
 import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from "@ngrx/signals"
 import { DiaryEntry } from "./diary-entry.model"
 import { initialDiaryState } from "./diary.slice"
-import { shareAppState } from "./diary.store.helpers"
-import { removeEntry, setAddEntryModalState, updateEntries, updateSelected } from "./diary.store.updaters"
-import { createDiaryView, getCurrentEntry } from "./diary.store.view"
-
-
+import { createDiaryEntry, drinksEntryUpdater, foodEntryUpdater, removeDiaryEntry, removeDrinksEntry, removeFoodEntry, saveDiaryEntry, setAddEntryModalState, setDate, setSleepQuality, setStomachPain, updateSelected } from "./diary.store.updaters"
+import { createDiaryView } from "./diary.store.view"
 
 export const DiaryStore = signalStore(
   { providedIn: 'root' },
   withState(initialDiaryState),
   withComputed(store => ({
-    diaryView: computed(() => createDiaryView(store.diaryEntries())),
-    currentEntry: computed(() => getCurrentEntry(store.selectedId(), store.diaryEntries())),
+    diaryView: computed(() => {
+      console.log("recalculated");
+      let view = createDiaryView(store.isAddEntryModalOpen(), store.diaryEntries(), store.currentEntry()!);
+      console.log(view);
+      return view;
+    }),
   })),
   withMethods(store => ({
-    addOrUpdateEntry: (entry: DiaryEntry) => patchState(store, updateEntries(entry)),
-    setSelected: (id: string) => patchState(store, updateSelected(id)),
-    export: () => shareAppState(store.diaryEntries()),
-    setAddEntryModalState: (isOpen: boolean) => patchState(store, setAddEntryModalState(isOpen)),
-    removeEntry: (id: string) => patchState(store, removeEntry(id)),
+    addFoodEntry: (id: number | undefined, ingredients: string, mealTime: string) =>
+      patchState(store, foodEntryUpdater(id, ingredients, mealTime)),
+    removeFoodEntry: (id: number) => patchState(store, removeFoodEntry(id)),
+    addDrinksEntry: (id: number | undefined, name: string, quantity: number) =>
+      patchState(store, drinksEntryUpdater(id, name, quantity)),
+    removeDrinksEntry: (id: number) => patchState(store, removeDrinksEntry(id)),
+    createDiaryEntry: () => patchState(store, createDiaryEntry()),
+    saveDiaryEntry: () => patchState(store, saveDiaryEntry()),
+    removeDiaryEntry: (id: number) => patchState(store, removeDiaryEntry(id)),
+    openAddEntryModal: () => patchState(store, setAddEntryModalState(true)),
+    closeAddEntryModal: () => patchState(store, setAddEntryModalState(false)),
+    selectItem: (diaryEntryId: number) => patchState(store, updateSelected(diaryEntryId)),
+    setSleepQuality: (sleepQuality: number) => patchState(store, setSleepQuality(sleepQuality)),
+    setStomachRating: (stomach: number) => patchState(store, setStomachPain(stomach)),
+    setDate: (date: string) => patchState(store, setDate(date)),
   })),
   withHooks(store => ({
     onInit() {

@@ -8,11 +8,13 @@
     <ion-toolbar>
       <ion-title size="large">Diary</ion-title>
       <ion-buttons slot="primary">
-        <ion-button (click)="addEntry()">
+        <ion-button (click)="diaryStore.createDiaryEntry()">
           <ion-icon name="add-outline"></ion-icon>
         </ion-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
-  <diary-component name="Tab 1 page"></diary-component>
+
+  <diary-component/>
+
 </ion-content>

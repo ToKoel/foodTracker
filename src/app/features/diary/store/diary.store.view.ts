@@ -6,12 +6,16 @@ export interface DiaryViewItem extends DiaryEntry {
   summary: string,
   statusColor: string,
 }
+export interface DiaryVm {
+  readonly items: DiaryViewItem[],
+  readonly modalOpen: boolean,
+  readonly currentItem: DiaryEntry
+}
 
 
-export function createDiaryView(diaryEntries: DiaryEntry[]): DiaryViewItem[] {
+export function createDiaryView(modalOpen: boolean, diaryEntries: DiaryEntry[], currentItem: DiaryEntry): DiaryVm {
   let items = diaryEntries.reduce((acc, current) => {
-    console.log(current);
-    const average = (current.stomach + (10 - current.sleepQuality)) / 2;
+    const average = (current.stomach + current.sleepQuality) / 2;
     acc.push({
       ...current,
       average,
@@ -22,18 +26,10 @@ export function createDiaryView(diaryEntries: DiaryEntry[]): DiaryViewItem[] {
   }, [] as DiaryViewItem[]);
 
   items = items.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
-  return items;
+  return {
+    items,
+    modalOpen,
+    currentItem
+  };
 }
 
-
-export function getCurrentEntry(entryId: string | undefined, entries: DiaryEntry[]) {
-  if (!entryId) {
-    return undefined;
-  }
-
-  const index = entries.findIndex(existing => existing.id === entryId);
-  if (index !== -1) {
-    return entries[index];
-  }
-  return undefined;
-}

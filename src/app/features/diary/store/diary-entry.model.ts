@@ -1,5 +1,5 @@
 export interface DiaryEntry {
-  id: string;
+  id: number;
   date: string;
   food: FoodEntry[];
   drinks: DrinkEntry[];

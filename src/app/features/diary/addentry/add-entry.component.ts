@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, effect, inject, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
+import { Component, effect, inject, ViewChild, ViewContainerRef } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonListHeader, IonModal, IonNote, IonPopover, IonRange, IonText, IonTitle, IonToolbar, RangeCustomEvent } from "@ionic/angular/standalone";
 import { addIcons } from "ionicons";
@@ -57,26 +57,13 @@ export class AddEntryComponent {
   constructor() {
     addIcons({ happyOutline, sadOutline, addOutline, closeOutline, trashOutline });
     effect(() => {
-      this.stomach = this.addEntryStore.stomach();
-      this.sleepQuality = this.addEntryStore.sleepQuality();
+      let addEntryVm = this.addEntryStore.addEntryVm();
+      if (!addEntryVm) {
+        return;
+      }
+      this.stomach = addEntryVm.stomach;
+      this.sleepQuality = addEntryVm.sleepQuality;
     })
-  }
-
-  cancel() {
-    this.modal.dismiss(null, 'cancel');
-    this.diaryStore.setAddEntryModalState(false);
-    this.resetDates();
-  }
-
-  saveChanges() {
-    this.addEntryStore.saveChanges();
-  }
-
-  resetDates() {
-    const date = new Date().toISOString();
-    this.currentDate = date;
-    this.mealTime = date;
-    this.sleepTime = date;
   }
 
   dateChanged() {
