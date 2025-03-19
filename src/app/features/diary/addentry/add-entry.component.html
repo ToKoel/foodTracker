@@ -74,8 +74,10 @@
       <ion-popover trigger="time">
         <ng-template>
           <ion-datetime
+            locale="de-DE"
             presentation="time"
-            [(ngModel)]="this.mealTime"
+            [value]="this.convertDate(this.mealTime)"
+            (ionChange)="this.timeChanged($event.detail.value)"
             [preferWheel]="false">
           </ion-datetime>
         </ng-template>
@@ -85,7 +87,8 @@
         <ng-template>
           <ion-datetime
             presentation="time"
-            [(ngModel)]="this.sleepTime"
+            [value]="this.convertDate(this.sleepTime)"
+            (ionChange)="this.sleepTimeChanged($event.detail.value)"
             [preferWheel]="false">
           </ion-datetime>
         </ng-template>

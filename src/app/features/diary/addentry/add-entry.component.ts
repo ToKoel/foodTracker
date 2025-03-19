@@ -53,6 +53,19 @@ export class AddEntryComponent {
   sleepQuality = 5;
   sleepTime = new Date().toISOString();
 
+  convertDate(dateString: string) {
+    let date = new Date(Date.parse(dateString));
+    return new Date(date.getTime() -
+      date.getTimezoneOffset() * 60000).toISOString();
+  }
+
+  timeChanged(time: any) {
+    this.mealTime = time;
+  }
+
+  sleepTimeChanged(time: any) {
+    this.sleepTime = time;
+  }
 
   constructor() {
     addIcons({ happyOutline, sadOutline, addOutline, closeOutline, trashOutline });
@@ -70,7 +83,7 @@ export class AddEntryComponent {
     this.addEntryStore.setDate(this.currentDate);
   }
 
-  onSliderChange(component: string, event: RangeCustomEvent) {
+  onSliderChange(component: string, _: RangeCustomEvent) {
     if (component === "stomach") {
       this.addEntryStore.setStomachPain(this.stomach);
     } else {
