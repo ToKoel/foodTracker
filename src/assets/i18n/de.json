@@ -1,0 +1,19 @@
+{
+  "diary": {
+    "title": "Tagebuch",
+    "add-entry": {
+      "add": "Hinzufügen",
+      "meals": "Mahlzeiten",
+      "drinks": "Getränke",
+      "sleep-time": "Schlafenszeit",
+      "save": "Speichern",
+      "stomach": "Magen",
+      "sleep-quality": "Schlafqualität",
+      "enter-ingredients": "Zutaten eingeben",
+      "enter-drinks": "Getränke eingeben"
+    }
+  },
+  "statistics": {
+    "title": "Statistik"
+  }
+}

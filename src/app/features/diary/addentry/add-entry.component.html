@@ -26,14 +26,14 @@
 
     <ion-content>
       <ion-item id="sleep-time">
-        <ion-label>Sleep time</ion-label>
+        <ion-label>{{ 'diary.add-entry.sleep-time' | transloco }}</ion-label>
         <ion-note color="primary">{{ this.sleepTime | date: 'HH:mm' }}</ion-note>
       </ion-item>
 
       <ion-item>
         <ion-list [inset]="true" style="width:100%;">
           <ion-list-header>
-            <ion-label class="meal-label"><strong>Meals</strong></ion-label>
+            <ion-label class="meal-label"><strong>{{ 'diary.add-entry.meals' | transloco}}</strong></ion-label>
           </ion-list-header>
 
           <ion-item-sliding *ngFor="let item of addEntryVm.food">
@@ -60,8 +60,10 @@
 
           <ion-item>
             <div>
-              <ion-input placeholder="Enter ingredients" [(ngModel)]="this.mealInput"></ion-input>
-              <ion-button (click)="addFoodEntry()">Add</ion-button>
+              <ion-input
+                [placeholder]="'diary.add-entry.enter-ingredients' | transloco"
+                [(ngModel)]="this.mealInput"></ion-input>
+              <ion-button (click)="addFoodEntry()">{{ 'diary.add-entry.add' | transloco }}</ion-button>
             </div>
             <div class="metadata-end-wrapper" slot="end">
               <ion-note color="primary" id="time">{{ this.mealTime | date: 'HH:mm' }}</ion-note>
@@ -97,7 +99,7 @@
       <ion-item>
         <ion-list [inset]="true" style="width:98%;">
           <ion-list-header>
-            <ion-label class="meal-label"><strong>Drinks</strong></ion-label>
+            <ion-label class="meal-label"><strong>{{ 'diary.add-entry.drinks' | transloco}}</strong></ion-label>
           </ion-list-header>
 
           <ion-item-sliding *ngFor="let item of addEntryVm.drinks">
@@ -124,8 +126,10 @@
 
           <ion-item>
             <div>
-              <ion-input placeholder="Enter ingredients" [(ngModel)]="this.drinksInput"></ion-input>
-              <ion-button (click)="addDrinksEntry()">Add</ion-button>
+              <ion-input
+                [placeholder]="'diary.add-entry.enter-drinks' | transloco"
+                [(ngModel)]="this.drinksInput"></ion-input>
+              <ion-button (click)="addDrinksEntry()">{{ 'diary.add-entry.add' | transloco }}</ion-button>
             </div>
             <div class="metadata-end-wrapper" slot="end">
               <ion-note id="quantity" color="primary">{{ this.drinksQuantity }}</ion-note>
@@ -143,7 +147,7 @@
 
       <ion-range
         labelPlacement="stacked"
-        label="Stomach"
+        [label]="'diary.add-entry.stomach' | transloco"
         class="ion-padding"
         [ticks]="true"
         [snaps]="true"
@@ -156,7 +160,7 @@
       </ion-range>
       <ion-range
         labelPlacement="stacked"
-        label="Sleep quality"
+        [label]="'diary.add-entry.sleep-quality' | transloco"
         class="ion-padding"
         [ticks]="true"
         [snaps]="true"
@@ -168,7 +172,7 @@
         <ion-icon slot="end" name="happy-outline"></ion-icon>
       </ion-range>
     </ion-content>
-    <ion-button expand="block" (click)="addEntryStore.saveChanges()">Save</ion-button>
+    <ion-button expand="block" (click)="addEntryStore.saveChanges()">{{ 'diary.add-entry.save' | transloco }}</ion-button>
   </ng-template>
 
 

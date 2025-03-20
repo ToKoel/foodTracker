@@ -6,6 +6,7 @@ import { addIcons } from "ionicons";
 import { addOutline, closeOutline, happyOutline, sadOutline, trashOutline } from "ionicons/icons";
 import { DiaryStore } from "../../diary/store/diary.store";
 import { AddEntryStore } from "./store/add-entry.store";
+import { TranslocoPipe } from "@jsverse/transloco";
 
 @Component({
   selector: "app-add-entry",
@@ -13,6 +14,7 @@ import { AddEntryStore } from "./store/add-entry.store";
   styleUrl: "./add-entry.component.scss",
   providers: [AddEntryStore],
   imports: [
+    TranslocoPipe,
     CommonModule,
     FormsModule,
     IonDatetime,

@@ -1,0 +1,19 @@
+{
+  "diary": {
+    "title": "Diary",
+    "add-entry": {
+      "add": "Add",
+      "meals": "Meals",
+      "drinks": "Drinks",
+      "sleep-time": "Sleep time",
+      "save": "Save",
+      "stomach": "Magen",
+      "sleep-quality": "Schlafqualität",
+      "enter-ingredients": "Enter ingredients",
+      "enter-drinks": "Enter drinks"
+    }
+  },
+  "statistics": {
+    "title": "Statistics"
+  }
+}

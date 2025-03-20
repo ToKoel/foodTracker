@@ -4,12 +4,13 @@ import { DiaryComponent } from '../diary.component';
 import { addOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { DiaryStore } from '../store/diary.store';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-diary-page',
   templateUrl: 'diary.page.html',
   styleUrls: ['diary.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, DiaryComponent, IonIcon, IonButtons, IonButton,
+  imports: [IonHeader, TranslocoPipe, IonToolbar, IonTitle, IonContent, DiaryComponent, IonIcon, IonButtons, IonButton,
   ],
 })
 export class DiaryPage {
