@@ -14,64 +14,63 @@
       </ion-toolbar>
     </ion-header>
 
-      <ion-popover trigger="date">
-        <ng-template>
-          <ion-datetime
-            presentation="date"
-            (ionChange)="this.dateChanged()"
-            [(ngModel)]="this.currentDate">
-          </ion-datetime>
-        </ng-template>
-      </ion-popover>
+    <ion-popover trigger="date">
+      <ng-template>
+        <ion-datetime
+          presentation="date"
+          (ionChange)="this.dateChanged()"
+          [(ngModel)]="this.currentDate">
+        </ion-datetime>
+      </ng-template>
+    </ion-popover>
 
     <ion-content>
       <ion-item id="sleep-time">
-        <ion-label>{{ 'diary.add-entry.sleep-time' | transloco }}</ion-label>
+        <ion-label><h1>{{ 'diary.add-entry.sleep-time' | transloco }}</h1></ion-label>
+            <div class="metadata-end-wrapper" slot="end">
         <ion-note color="primary">{{ this.sleepTime | date: 'HH:mm' }}</ion-note>
+          </div>
       </ion-item>
 
-      <ion-item>
-        <ion-list [inset]="true" style="width:100%;">
-          <ion-list-header>
-            <ion-label class="meal-label"><strong>{{ 'diary.add-entry.meals' | transloco}}</strong></ion-label>
-          </ion-list-header>
+      <ion-list>
+        <ion-list-header>
+          <ion-label><h1>{{ 'diary.add-entry.meals' | transloco}}</h1></ion-label>
+        </ion-list-header>
 
-          <ion-item-sliding *ngFor="let item of addEntryVm.food">
-            <ion-item>
-              <ion-label>
-                <ion-text>{{ item.ingredients.join(",") }}</ion-text>
-              </ion-label>
-              <div class="metadata-end-wrapper" slot="end">
-                <ion-note color="medium">{{ item.time | date: 'HH:mm' }}</ion-note>
-              </div>
-            </ion-item>
-
-            <ion-item-options>
-              <ion-item-option color="danger">
-                <ion-icon
-                  slot="icon-only"
-                  name="trash-outline"
-                  button
-                  (click)="addEntryStore.removeFoodEntry(item.id)">
-                </ion-icon>
-              </ion-item-option>
-            </ion-item-options>
-          </ion-item-sliding>
-
+        <ion-item-sliding *ngFor="let item of addEntryVm.food">
           <ion-item>
-            <div>
-              <ion-input
-                [placeholder]="'diary.add-entry.enter-ingredients' | transloco"
-                [(ngModel)]="this.mealInput"></ion-input>
-              <ion-button (click)="addFoodEntry()">{{ 'diary.add-entry.add' | transloco }}</ion-button>
-            </div>
+            <ion-label>
+              <ion-text>{{ item.ingredients.join(",") }}</ion-text>
+            </ion-label>
             <div class="metadata-end-wrapper" slot="end">
-              <ion-note color="primary" id="time">{{ this.mealTime | date: 'HH:mm' }}</ion-note>
+              <ion-note color="medium">{{ item.time | date: 'HH:mm' }}</ion-note>
             </div>
           </ion-item>
 
-        </ion-list>
-      </ion-item>
+          <ion-item-options>
+            <ion-item-option color="danger">
+              <ion-icon
+                slot="icon-only"
+                name="trash-outline"
+                button
+                (click)="addEntryStore.removeFoodEntry(item.id)">
+              </ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+
+        <ion-item>
+          <div>
+            <ion-input
+              [placeholder]="'diary.add-entry.enter-ingredients' | transloco"
+              [(ngModel)]="this.mealInput"></ion-input>
+            <ion-button (click)="addFoodEntry()">{{ 'diary.add-entry.add' | transloco }}</ion-button>
+          </div>
+          <div class="metadata-end-wrapper" slot="end">
+            <ion-note color="primary" id="time">{{ this.mealTime | date: 'HH:mm' }}</ion-note>
+          </div>
+        </ion-item>
+      </ion-list>
 
       <ion-popover trigger="time">
         <ng-template>
@@ -96,48 +95,46 @@
         </ng-template>
       </ion-popover>
 
-      <ion-item>
-        <ion-list [inset]="true" style="width:98%;">
-          <ion-list-header>
-            <ion-label class="meal-label"><strong>{{ 'diary.add-entry.drinks' | transloco}}</strong></ion-label>
-          </ion-list-header>
+      <ion-list class="ion-padding-bottom">
+        <ion-list-header>
+          <ion-label><h1>{{ 'diary.add-entry.drinks' | transloco}}</h1></ion-label>
+        </ion-list-header>
 
-          <ion-item-sliding *ngFor="let item of addEntryVm.drinks">
-            <ion-item>
-              <ion-label>
-                <ion-text>{{ item.name }}</ion-text>
-              </ion-label>
-              <div class="metadata-end-wrapper" slot="end">
-                <ion-note>{{ item.quantity }}</ion-note>
-              </div>
-            </ion-item>
-
-            <ion-item-options>
-              <ion-item-option color="danger">
-                <ion-icon
-                  slot="icon-only"
-                  name="trash-outline"
-                  button
-                  (click)="addEntryStore.removeDrinksEntry(item.id)">
-                </ion-icon>
-              </ion-item-option>
-            </ion-item-options>
-          </ion-item-sliding>
-
+        <ion-item-sliding *ngFor="let item of addEntryVm.drinks">
           <ion-item>
-            <div>
-              <ion-input
-                [placeholder]="'diary.add-entry.enter-drinks' | transloco"
-                [(ngModel)]="this.drinksInput"></ion-input>
-              <ion-button (click)="addDrinksEntry()">{{ 'diary.add-entry.add' | transloco }}</ion-button>
-            </div>
+            <ion-label>
+              <ion-text>{{ item.name }}</ion-text>
+            </ion-label>
             <div class="metadata-end-wrapper" slot="end">
-              <ion-note id="quantity" color="primary">{{ this.drinksQuantity }}</ion-note>
+              <ion-note>{{ item.quantity }}</ion-note>
             </div>
           </ion-item>
 
-        </ion-list>
-      </ion-item>
+          <ion-item-options>
+            <ion-item-option color="danger">
+              <ion-icon
+                slot="icon-only"
+                name="trash-outline"
+                button
+                (click)="addEntryStore.removeDrinksEntry(item.id)">
+              </ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+
+        <ion-item>
+          <div>
+            <ion-input
+              [placeholder]="'diary.add-entry.enter-drinks' | transloco"
+              [(ngModel)]="this.drinksInput"></ion-input>
+            <ion-button (click)="addDrinksEntry()">{{ 'diary.add-entry.add' | transloco }}</ion-button>
+          </div>
+          <div class="metadata-end-wrapper" slot="end">
+            <ion-note id="quantity" color="primary">{{ this.drinksQuantity }}</ion-note>
+          </div>
+        </ion-item>
+
+      </ion-list>
 
       <ion-popover trigger="quantity">
         <ng-template>
@@ -145,35 +142,43 @@
         </ng-template>
       </ion-popover>
 
-      <ion-range
-        labelPlacement="stacked"
-        [label]="'diary.add-entry.stomach' | transloco"
-        class="ion-padding"
-        [ticks]="true"
-        [snaps]="true"
-        [min]="0"
-        [max]="10"
-        [(ngModel)]="this.stomach"
-        (ionChange)="onSliderChange('stomach', $event)">
-        <ion-icon slot="start" name="sad-outline"></ion-icon>
-        <ion-icon slot="end" name="happy-outline"></ion-icon>
-      </ion-range>
-      <ion-range
-        labelPlacement="stacked"
-        [label]="'diary.add-entry.sleep-quality' | transloco"
-        class="ion-padding"
-        [ticks]="true"
-        [snaps]="true"
-        [min]="0"
-        [max]="10"
-        [(ngModel)]="this.sleepQuality"
-        (ionChange)="onSliderChange('sleep', $event)">
-        <ion-icon slot="start" name="sad-outline"></ion-icon>
-        <ion-icon slot="end" name="happy-outline"></ion-icon>
-      </ion-range>
+      <ion-item>
+        <div class="range-container">
+          <ion-label><h1>{{ 'diary.add-entry.stomach' | transloco }}</h1></ion-label>
+          <ion-range
+            class="ion-padding"
+            [ticks]="true"
+            [snaps]="true"
+            [min]="0"
+            [max]="10"
+            [(ngModel)]="this.stomach"
+            (ionChange)="onSliderChange('stomach', $event)">
+            <ion-icon slot="start" name="sad-outline"></ion-icon>
+            <ion-icon slot="end" name="happy-outline"></ion-icon>
+          </ion-range>
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <div class="range-container">
+          <ion-label><h1>{{ 'diary.add-entry.sleep-quality' | transloco }}</h1></ion-label>
+          <ion-range
+            class="ion-padding"
+            [ticks]="true"
+            [snaps]="true"
+            [min]="0"
+            [max]="10"
+            [(ngModel)]="this.sleepQuality"
+            (ionChange)="onSliderChange('sleep', $event)">
+            <ion-icon slot="start" name="sad-outline"></ion-icon>
+            <ion-icon slot="end" name="happy-outline"></ion-icon>
+          </ion-range>
+        </div>
+      </ion-item>
+
+      <ion-button expand="block" (click)="addEntryStore.saveChanges()">{{ 'diary.add-entry.save' | transloco }}</ion-button>
+
     </ion-content>
-    <ion-button expand="block" (click)="addEntryStore.saveChanges()">{{ 'diary.add-entry.save' | transloco }}</ion-button>
+
   </ng-template>
-
-
 </ion-modal>

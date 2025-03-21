@@ -67,7 +67,16 @@ ion-label{
   align-items: center;
 }
 
-.meal-label {
-  font-size: 25px;
+.range-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 8px;
 }
 
