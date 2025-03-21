@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList } from "@ionic/angular/standalone";
-import { DiaryStore } from './store/diary.store';
-import { AddEntryComponent } from "./addentry/add-entry.component";
+import { DiaryStore } from '../store/diary.store';
+import { AddEntryComponent } from "../addentry/add-entry.component";
 
 @Component({
   selector: "diary-component",
