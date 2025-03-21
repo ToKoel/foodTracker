@@ -2,6 +2,7 @@ import { PartialStateUpdater } from "@ngrx/signals";
 import { DiaryEntry, DrinkEntry, FoodEntry } from "./diary-entry.model";
 import { DiarySlice, PersistedDiarySlice } from "./diary.slice";
 
+
 export function updateEntries(entry: DiaryEntry): PartialStateUpdater<DiarySlice> {
   return state => {
     let entries: DiaryEntry[] = state.diaryEntries;
@@ -24,20 +25,6 @@ export function setAddEntryModalState(isOpen: boolean): PartialStateUpdater<Diar
   return _ => ({
     isAddEntryModalOpen: isOpen
   });
-}
-
-export function saveToFile(diaryFile: File, persistedValue: PersistedDiarySlice) {
-  console.log("saving");
-  // if (diaryFile.isLocked) {
-  //   return;
-  // }
-  // diaryFile.writeText(JSON.stringify(persistedValue))
-  //   .then(() => {
-  //     console.log('Diary entries saved successfully.');
-  //   })
-  //   .catch((error) => {
-  //     console.error('Error saving diary entries:', error);
-  //   });
 }
 
 export function removeDiaryEntry(id: number): PartialStateUpdater<DiarySlice> {
@@ -96,21 +83,51 @@ export function saveDiaryEntry(): PartialStateUpdater<DiarySlice> {
   }
 }
 
+export function setSelectedView(selectedView: string): PartialStateUpdater<DiarySlice> {
+  return _ => ({
+    selectedView
+  });
+}
+
+function getNewEntry(id: number): DiaryEntry {
+  return {
+    id: id,
+    date: new Date().toISOString(),
+    food: [] as FoodEntry[],
+    drinks: [] as DrinkEntry[],
+    medication: [],
+    sleepQuality: 5,
+    stomach: 5,
+    sleepTime: new Date().toISOString(),
+    activity: false
+  }
+}
+
 export function createDiaryEntry(): PartialStateUpdater<DiarySlice> {
   return state => {
-    const newEntry: DiaryEntry = {
-      id: state.diaryEntries.length + 1,
-      date: new Date().toISOString(),
-      food: [] as FoodEntry[],
-      drinks: [] as DrinkEntry[],
-      medication: [],
-      sleepQuality: 5,
-      stomach: 5,
-      sleepTime: new Date().toISOString(),
-      activity: false
-    }
     return {
-      currentEntry: newEntry,
+      currentEntry: getNewEntry(state.diaryEntries.length + 1),
+      isAddEntryModalOpen: true
+    }
+  }
+}
+
+export function dateSelected(date: string): PartialStateUpdater<DiarySlice> {
+  console.log(date.substring(0, 10));
+  return state => {
+    const index = state.diaryEntries.findIndex(entry => entry.date.substring(0, 10) === date.substring(0, 10));
+    if (index !== -1) {
+      return {
+        isAddEntryModalOpen: true,
+        currentEntry: state.diaryEntries[index]
+      }
+    }
+
+    return {
+      currentEntry: {
+        ...getNewEntry(state.diaryEntries.length + 1),
+        date
+      },
       isAddEntryModalOpen: true
     }
   }

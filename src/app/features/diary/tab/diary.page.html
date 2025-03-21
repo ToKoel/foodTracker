@@ -1,5 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+      <ion-segment [value]="diaryStore.selectedView()" (ionChange)="diaryStore.setSelectedView($event)">
+        <ion-segment-button value="calendar">
+          <ion-label>{{ 'diary.calendar-view' | transloco }}</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="list">
+          <ion-label>{{ 'diary.list-view' | transloco }}</ion-label>
+        </ion-segment-button>
+      </ion-segment>
   </ion-toolbar>
 </ion-header>
 
@@ -10,7 +18,7 @@
         {{ 'diary.title' | transloco }}
       </ion-title>
       <ion-buttons slot="primary">
-        <ion-button (click)="diaryStore.createDiaryEntry()">
+        <ion-button *ngIf="diaryStore.selectedView() == 'list'" (click)="diaryStore.createDiaryEntry()">
           <ion-icon name="add-outline"></ion-icon>
         </ion-button>
       </ion-buttons>

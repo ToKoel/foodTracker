@@ -5,7 +5,7 @@
   <ng-template>
     <ion-header>
       <ion-toolbar>
-        <ion-title id="date">{{ addEntryVm.date | date: 'dd.MM.yyyy' }}</ion-title>
+        <ion-title id="date"><h2>{{ addEntryVm.date | date: 'dd.MM.yyyy' }}</h2></ion-title>
         <ion-buttons slot="primary" class='ion-button'>
           <ion-button (click)="diaryStore.closeAddEntryModal()">
             <ion-icon name="close-outline"></ion-icon>
@@ -14,8 +14,8 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-popover trigger="date">
-      <ng-template>
+    <ion-popover trigger="date" class="calendar-popover">
+      <ng-template class="xc">
         <ion-datetime
           presentation="date"
           (ionChange)="this.dateChanged()"
@@ -25,10 +25,10 @@
     </ion-popover>
 
     <ion-content>
-      <ion-item id="sleep-time">
+      <ion-item>
         <ion-label><h1>{{ 'diary.add-entry.sleep-time' | transloco }}</h1></ion-label>
             <div class="metadata-end-wrapper" slot="end">
-        <ion-note color="primary">{{ this.sleepTime | date: 'HH:mm' }}</ion-note>
+        <ion-note id="sleep-time" color="primary">{{ this.sleepTime | date: 'HH:mm' }}</ion-note>
           </div>
       </ion-item>
 
@@ -43,7 +43,7 @@
               <ion-text>{{ item.ingredients.join(",") }}</ion-text>
             </ion-label>
             <div class="metadata-end-wrapper" slot="end">
-              <ion-note color="medium">{{ item.time | date: 'HH:mm' }}</ion-note>
+              <ion-note color="ion-color-light">{{ item.time | date: 'HH:mm' }}</ion-note>
             </div>
           </ion-item>
 
@@ -95,7 +95,7 @@
         </ng-template>
       </ion-popover>
 
-      <ion-list class="ion-padding-bottom">
+      <ion-list>
         <ion-list-header>
           <ion-label><h1>{{ 'diary.add-entry.drinks' | transloco}}</h1></ion-label>
         </ion-list-header>
@@ -106,7 +106,7 @@
               <ion-text>{{ item.name }}</ion-text>
             </ion-label>
             <div class="metadata-end-wrapper" slot="end">
-              <ion-note>{{ item.quantity }}</ion-note>
+              <ion-note color="ion-color-light">{{ item.quantity }}</ion-note>
             </div>
           </ion-item>
 
@@ -176,9 +176,14 @@
         </div>
       </ion-item>
 
-      <ion-button expand="block" (click)="addEntryStore.saveChanges()">{{ 'diary.add-entry.save' | transloco }}</ion-button>
 
     </ion-content>
+    <ion-footer>
+      <ion-button
+        class="ion-padding-bottom"
+        expand="block"
+        (click)="addEntryStore.saveChanges()">{{ 'diary.add-entry.save' | transloco }}</ion-button>
+</ion-footer>
 
   </ng-template>
 </ion-modal>

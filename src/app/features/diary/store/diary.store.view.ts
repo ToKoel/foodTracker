@@ -6,14 +6,23 @@ export interface DiaryViewItem extends DiaryEntry {
   summary: string,
   statusColor: string,
 }
+
+export interface HighlightedDate {
+  date: string,
+  textColor: string,
+  backgroundColor: string
+}
+
 export interface DiaryVm {
   readonly items: DiaryViewItem[],
   readonly modalOpen: boolean,
   readonly currentItem: DiaryEntry
+  readonly dates: HighlightedDate[],
+  readonly selectedView: string,
 }
 
 
-export function createDiaryView(modalOpen: boolean, diaryEntries: DiaryEntry[], currentItem: DiaryEntry): DiaryVm {
+export function createDiaryView(modalOpen: boolean, diaryEntries: DiaryEntry[], currentItem: DiaryEntry, selectedView: string): DiaryVm {
   let items = diaryEntries.reduce((acc, current) => {
     const average = (current.stomach + current.sleepQuality) / 2;
     acc.push({
@@ -26,10 +35,22 @@ export function createDiaryView(modalOpen: boolean, diaryEntries: DiaryEntry[], 
   }, [] as DiaryViewItem[]);
 
   items = items.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+  const dates = [] as HighlightedDate[];
+  items.forEach(item => {
+    const highlightedDate: HighlightedDate = {
+      date: item.date.substring(0, 10),
+      textColor: "#f6f8fc",
+      backgroundColor: item.average < 5 ? "#c5000f" : "#2dd55b"
+    }
+    dates.push(highlightedDate);
+  });
+
   return {
     items,
     modalOpen,
-    currentItem
+    currentItem,
+    dates,
+    selectedView
   };
 }
 

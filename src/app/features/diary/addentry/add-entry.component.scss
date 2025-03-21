@@ -1,22 +1,4 @@
 
-.component-spacing {
-  margin-top: 10px;
-  margin-bottom: 30px;
-  margin-right: 30px;
-  margin-left: 30px;
-}
-
-.slider-margins {
-  margin-left: 30px;
-  margin-right: 30px;
-}
-
-.title {
-  font-size: 18;
-  font-weight: bold;
-  margin-left: 30px;
-}
-
 .row-layout {
   align-items: center;
 }
@@ -29,6 +11,15 @@
 .time-picker {
   width: 150px;
   margin-right: 30px;
+}
+
+ion-datetime {
+  --background: var(--ion-color-dark);
+  --background-rgb: var(--ion-color-dark-rgb);
+}
+
+.calendar-popover {
+  --width: 80%
 }
 
 .textField {
@@ -71,6 +62,12 @@ ion-label{
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.xc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .list-container {

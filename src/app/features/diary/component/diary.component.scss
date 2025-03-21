@@ -6,6 +6,17 @@
   background-color: lightgreen;
 }
 
+.calendar {
+  border-radius: 16px;
+  box-shadow: rgba(0,0,0, 0.5) 0px 10px 15px -3px;
+}
+
+.xc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .list-item {
   margin-top: 20px;
   margin-bottom: 20px;

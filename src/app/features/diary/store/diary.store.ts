@@ -3,7 +3,7 @@ import { Directory, Encoding, Filesystem } from "@capacitor/filesystem"
 import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from "@ngrx/signals"
 import { DiaryEntry } from "./diary-entry.model"
 import { initialDiaryState } from "./diary.slice"
-import { createDiaryEntry, drinksEntryUpdater, foodEntryUpdater, removeDiaryEntry, removeDrinksEntry, removeFoodEntry, saveDiaryEntry, setAddEntryModalState, setDate, setSleepQuality, setStomachPain, updateSelected } from "./diary.store.updaters"
+import { createDiaryEntry, dateSelected, drinksEntryUpdater, foodEntryUpdater, removeDiaryEntry, removeDrinksEntry, removeFoodEntry, saveDiaryEntry, setAddEntryModalState, setDate, setSelectedView, setSleepQuality, setStomachPain, updateSelected } from "./diary.store.updaters"
 import { createDiaryView } from "./diary.store.view"
 
 export const DiaryStore = signalStore(
@@ -12,7 +12,11 @@ export const DiaryStore = signalStore(
   withComputed(store => ({
     diaryView: computed(() => {
       console.log("recalculated");
-      let view = createDiaryView(store.isAddEntryModalOpen(), store.diaryEntries(), store.currentEntry()!);
+      let view = createDiaryView(
+        store.isAddEntryModalOpen(),
+        store.diaryEntries(),
+        store.currentEntry()!,
+        store.selectedView());
       console.log(view);
       return view;
     }),
@@ -33,6 +37,8 @@ export const DiaryStore = signalStore(
     setSleepQuality: (sleepQuality: number) => patchState(store, setSleepQuality(sleepQuality)),
     setStomachRating: (stomach: number) => patchState(store, setStomachPain(stomach)),
     setDate: (date: string) => patchState(store, setDate(date)),
+    setSelectedView: (event: any) => patchState(store, setSelectedView(event.detail.value)),
+    dateSelected: (event: any) => patchState(store, dateSelected(event.detail.value)),
   })),
   withHooks(store => ({
     onInit() {
@@ -44,7 +50,6 @@ export const DiaryStore = signalStore(
         });
         if (contents.data) {
           const diaryEntries = JSON.parse(contents.data as string) as DiaryEntry[];
-          console.log(diaryEntries);
           patchState(store, { diaryEntries: diaryEntries });
         }
       };
@@ -56,9 +61,7 @@ export const DiaryStore = signalStore(
           data: JSON.stringify(store.diaryEntries()),
           directory: Directory.Documents,
           encoding: Encoding.UTF8,
-        }).then(result => {
-          console.log(result.uri);
-        });
+        }).then(result => { });
       })
     }
   }))

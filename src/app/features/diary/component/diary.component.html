@@ -1,9 +1,19 @@
-@let diaryEntries = diaryStore.diaryView();
+@let diaryView = diaryStore.diaryView();
 
 <app-add-entry/>
 
-<ion-list>
-  <ion-item-sliding *ngFor="let item of diaryEntries.items">
+<div class="xc" *ngIf="diaryView.selectedView === 'calendar'">
+<ion-datetime
+    class="calendar"
+  presentation="date"
+    (ionChange)="diaryStore.dateSelected($event)"
+    [firstDayOfWeek]="1"
+  [highlightedDates]="diaryView.dates">
+</ion-datetime>
+</div>
+
+<ion-list *ngIf="diaryView.selectedView === 'list'">
+  <ion-item-sliding *ngFor="let item of diaryView.items">
     <ion-item button
       (click)="diaryStore.selectItem(item.id)">
       <ion-label>{{ item.date | date: 'dd.MM.yyyy' }}</ion-label>

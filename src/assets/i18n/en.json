@@ -1,6 +1,8 @@
 {
   "diary": {
     "title": "Diary",
+    "list-view": "List",
+    "calendar-view": "Calendar",
     "add-entry": {
       "add": "Add",
       "meals": "Meals",

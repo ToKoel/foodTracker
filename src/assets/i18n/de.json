@@ -1,6 +1,8 @@
 {
   "diary": {
     "title": "Tagebuch",
+    "list-view": "Liste",
+    "calendar-view": "Kalendar",
     "add-entry": {
       "add": "Hinzufügen",
       "meals": "Mahlzeiten",
