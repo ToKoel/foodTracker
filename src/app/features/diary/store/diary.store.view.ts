@@ -39,8 +39,8 @@ export function createDiaryView(modalOpen: boolean, diaryEntries: DiaryEntry[], 
   items.forEach(item => {
     const highlightedDate: HighlightedDate = {
       date: item.date.substring(0, 10),
-      textColor: "#f6f8fc",
-      backgroundColor: item.average < 5 ? "#c5000f" : "#2dd55b"
+      textColor: item.average < 5 ? "var(--ion-color-danger-contrast)" : "var(--ion-color-light-contrast)",
+      backgroundColor: item.average < 5 ? "var(--ion-color-danger)" : "var(--ion-color-light)"
     }
     dates.push(highlightedDate);
   });
