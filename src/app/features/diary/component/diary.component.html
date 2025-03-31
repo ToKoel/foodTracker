@@ -12,7 +12,7 @@
 </ion-datetime>
 </div>
 
-<ion-list *ngIf="diaryView.selectedView === 'list'">
+<ion-list [inset]="true" *ngIf="diaryView.selectedView === 'list'">
   <ion-item-sliding *ngFor="let item of diaryView.items">
     <ion-item button
       (click)="diaryStore.selectItem(item.id)">

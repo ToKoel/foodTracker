@@ -34,7 +34,7 @@ export function createDiaryView(modalOpen: boolean, diaryEntries: DiaryEntry[], 
     return acc;
   }, [] as DiaryViewItem[]);
 
-  items = items.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+  items = items.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
   const dates = [] as HighlightedDate[];
   items.forEach(item => {
     const highlightedDate: HighlightedDate = {
