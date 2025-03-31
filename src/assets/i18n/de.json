@@ -4,6 +4,9 @@
     "list-view": "Liste",
     "calendar-view": "Kalendar",
     "add-entry": {
+      "activity": "Bewegung",
+      "heartburn": "Sodbrennen",
+      "other": "Sonstiges",
       "add": "Hinzufügen",
       "meals": "Mahlzeiten",
       "drinks": "Getränke",

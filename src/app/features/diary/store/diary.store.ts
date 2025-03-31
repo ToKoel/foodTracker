@@ -3,7 +3,7 @@ import { Directory, Encoding, Filesystem } from "@capacitor/filesystem"
 import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from "@ngrx/signals"
 import { DiaryEntry } from "./diary-entry.model"
 import { initialDiaryState } from "./diary.slice"
-import { createDiaryEntry, dateSelected, drinksEntryUpdater, foodEntryUpdater, removeDiaryEntry, removeDrinksEntry, removeFoodEntry, saveDiaryEntry, setAddEntryModalState, setDate, setSelectedView, setSleepQuality, setStomachPain, updateSelected } from "./diary.store.updaters"
+import { createDiaryEntry, dateSelected, drinksEntryUpdater, foodEntryUpdater, removeDiaryEntry, removeDrinksEntry, removeFoodEntry, saveDiaryEntry, setAddEntryModalState, setDate, setSelectedView, setSleepQuality, setStomachPain, toggleActivity, toggleHeartburn, updateSelected } from "./diary.store.updaters"
 import { createDiaryView } from "./diary.store.view"
 
 export const DiaryStore = signalStore(
@@ -36,6 +36,8 @@ export const DiaryStore = signalStore(
       patchState(store, setAddEntryModalState(false));
       patchState(store, saveDiaryEntry());
     },
+    toggleActivity: () => patchState(store, toggleActivity()),
+    toggleHeartburn: () => patchState(store, toggleHeartburn()),
     selectItem: (diaryEntryId: number) => patchState(store, updateSelected(diaryEntryId)),
     setSleepQuality: (sleepQuality: number) => patchState(store, setSleepQuality(sleepQuality)),
     setStomachRating: (stomach: number) => patchState(store, setStomachPain(stomach)),

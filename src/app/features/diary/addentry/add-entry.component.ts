@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, ViewChild, ViewContainerRef } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { IonButton, IonButtons, IonCard, IonCardContent, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonModal, IonNote, IonPopover, IonRange, IonText, IonTitle, IonToolbar, RangeCustomEvent } from "@ionic/angular/standalone";
+import { IonButton, IonButtons, IonCard, IonCardContent, IonCheckbox, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonModal, IonNote, IonPopover, IonRange, IonText, IonTitle, IonToolbar, RangeCustomEvent } from "@ionic/angular/standalone";
 import { TranslocoPipe } from "@jsverse/transloco";
 import { addIcons } from "ionicons";
 import { addOutline, closeOutline, happyOutline, sadOutline, trashOutline } from "ionicons/icons";
@@ -16,6 +16,7 @@ import { AddEntryStore } from "./store/add-entry.store";
   imports: [
     IonCard,
     IonCardContent,
+    IonCheckbox,
     TranslocoPipe,
     CommonModule,
     FormsModule,

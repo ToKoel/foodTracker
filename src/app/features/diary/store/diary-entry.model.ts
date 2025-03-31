@@ -8,6 +8,7 @@ export interface DiaryEntry {
   sleepQuality: number;
   sleepTime: string;
   activity: boolean;
+  heartburn: boolean;
 }
 
 export interface FoodEntry {

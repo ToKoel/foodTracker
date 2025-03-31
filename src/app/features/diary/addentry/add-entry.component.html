@@ -146,10 +146,29 @@
         </ng-template>
       </ion-popover>
 
-      <ion-card color="medium" >
+      <ion-card color="medium">
         <ion-card-content>
-          <ion-label><h1>{{ 'diary.add-entry.stomach' | transloco }}</h1></ion-label>
+          <ion-label><h1>{{ 'diary.add-entry.other' | transloco }}</h1></ion-label>
+        </ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-checkbox
+              justify="space-between"
+              [checked]="addEntryVm.activity"
+              (ionChange)="addEntryStore.toggleActivity()"
+            >{{ 'diary.add-entry.activity' | transloco }}</ion-checkbox>
+          </ion-item>
+          <ion-item>
+            <ion-checkbox
+              justify="space-between"
+              [checked]="addEntryVm.heartburn"
+              (ionChange)="addEntryStore.toggleHeartburn()"
+            >{{ 'diary.add-entry.heartburn' | transloco }}</ion-checkbox>
+          </ion-item>
+          <ion-item>
           <ion-range
+              labelPlacement="stacked"
+              [label]="'diary.add-entry.stomach' | transloco"
             [ticks]="true"
             [snaps]="true"
             [min]="0"
@@ -159,13 +178,12 @@
             <ion-icon slot="start" name="sad-outline"></ion-icon>
             <ion-icon slot="end" name="happy-outline"></ion-icon>
           </ion-range>
-        </ion-card-content>
-      </ion-card>
+          </ion-item>
 
-      <ion-card color="medium">
-        <ion-card-content>
-          <ion-label><h1>{{ 'diary.add-entry.sleep-quality' | transloco }}</h1></ion-label>
+          <ion-item>
           <ion-range
+              labelPlacement="stacked"
+              [label]="'diary.add-entry.sleep-quality' | transloco"
             [ticks]="true"
             [snaps]="true"
             [min]="0"
@@ -175,7 +193,8 @@
             <ion-icon slot="start" name="sad-outline"></ion-icon>
             <ion-icon slot="end" name="happy-outline"></ion-icon>
           </ion-range>
-        </ion-card-content>
+          </ion-item>
+        </ion-list>
       </ion-card>
     </ion-content>
 

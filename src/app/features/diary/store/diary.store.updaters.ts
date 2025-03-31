@@ -27,6 +27,28 @@ export function setAddEntryModalState(isOpen: boolean): PartialStateUpdater<Diar
   });
 }
 
+export function toggleActivity(): PartialStateUpdater<DiarySlice> {
+  return state => {
+    let diaryEntry = state.currentEntry!;
+    diaryEntry.activity = !diaryEntry.activity;
+
+    return {
+      currentEntry: { ...diaryEntry }
+    }
+  }
+}
+
+export function toggleHeartburn(): PartialStateUpdater<DiarySlice> {
+  return state => {
+    let diaryEntry = state.currentEntry!;
+    diaryEntry.heartburn = !diaryEntry.heartburn;
+
+    return {
+      currentEntry: { ...diaryEntry }
+    }
+  }
+}
+
 export function removeDiaryEntry(id: number): PartialStateUpdater<DiarySlice> {
   return state => {
     const filtered = state.diaryEntries.filter(entry => entry.id !== id);
@@ -99,7 +121,8 @@ function getNewEntry(id: number): DiaryEntry {
     sleepQuality: 5,
     stomach: 5,
     sleepTime: new Date().toISOString(),
-    activity: false
+    activity: false,
+    heartburn: false
   }
 }
 

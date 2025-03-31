@@ -23,6 +23,8 @@ export const AddEntryStore = signalStore(
     setStomachPain: store._diaryStore.setStomachRating,
     setSleepQuality: store._diaryStore.setSleepQuality,
     setDate: store._diaryStore.setDate,
+    toggleActivity: store._diaryStore.toggleActivity,
+    toggleHeartburn: store._diaryStore.toggleHeartburn
   })),
   withComputed(store => ({
     addEntryVm: computed(() => buildAddEntryVm(store._diaryStore.currentEntry()!)),

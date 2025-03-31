@@ -10,7 +10,6 @@ export function buildAddEntryVm(entry: DiaryEntry) {
   });
   const sortedDrinks = entry.drinks.sort((a, b) => a.name.localeCompare(b.name,
     undefined, { 'sensitivity': 'base' }));
-  console.log(sortedFood);
 
   return { ...entry, food: sortedFood, drinks: sortedDrinks };
 }
