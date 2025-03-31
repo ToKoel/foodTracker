@@ -25,52 +25,55 @@
     </ion-popover>
 
     <ion-content>
-      <ion-item>
-        <ion-label><h1>{{ 'diary.add-entry.sleep-time' | transloco }}</h1></ion-label>
-            <div class="metadata-end-wrapper" slot="end">
-        <ion-note id="sleep-time" color="primary">{{ this.sleepTime | date: 'HH:mm' }}</ion-note>
-          </div>
-      </ion-item>
-
-      <ion-list>
-        <ion-list-header>
-          <ion-label><h1>{{ 'diary.add-entry.meals' | transloco}}</h1></ion-label>
-        </ion-list-header>
-
-        <ion-item-sliding *ngFor="let item of addEntryVm.food">
-          <ion-item>
-            <ion-label>
-              <ion-text>{{ item.ingredients.join(",") }}</ion-text>
-            </ion-label>
-            <div class="metadata-end-wrapper" slot="end">
-              <ion-note color="ion-color-light">{{ item.time | date: 'HH:mm' }}</ion-note>
-            </div>
-          </ion-item>
-
-          <ion-item-options>
-            <ion-item-option color="danger">
-              <ion-icon
-                slot="icon-only"
-                name="trash-outline"
-                button
-                (click)="addEntryStore.removeFoodEntry(item.id)">
-              </ion-icon>
-            </ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
-
+      <ion-card>
         <ion-item>
-          <div>
-            <ion-input
-              [placeholder]="'diary.add-entry.enter-ingredients' | transloco"
-              [(ngModel)]="this.mealInput"
-              (keyup.enter)="addFoodEntry()"></ion-input>
-          </div>
+          <ion-label><h1>{{ 'diary.add-entry.sleep-time' | transloco }}</h1></ion-label>
           <div class="metadata-end-wrapper" slot="end">
-            <ion-note color="primary" id="time">{{ this.mealTime | date: 'HH:mm' }}</ion-note>
+            <ion-note id="sleep-time" color="primary">{{ this.sleepTime | date: 'HH:mm' }}</ion-note>
           </div>
         </ion-item>
-      </ion-list>
+      </ion-card>
+
+      <ion-card color="medium">
+        <ion-card-content>
+          <ion-label><h1>{{ 'diary.add-entry.meals' | transloco}}</h1></ion-label>
+        </ion-card-content>
+        <ion-list>
+          <ion-item-sliding *ngFor="let item of addEntryVm.food">
+            <ion-item>
+              <ion-label>
+                <ion-text>{{ item.ingredients.join(",") }}</ion-text>
+              </ion-label>
+              <div class="metadata-end-wrapper" slot="end">
+                <ion-note color="accent">{{ item.time | date: 'HH:mm' }}</ion-note>
+              </div>
+            </ion-item>
+
+            <ion-item-options>
+              <ion-item-option color="danger">
+                <ion-icon
+                  slot="icon-only"
+                  name="trash-outline"
+                  button
+                  (click)="addEntryStore.removeFoodEntry(item.id)">
+                </ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+
+          <ion-item>
+            <div>
+              <ion-input
+                [placeholder]="'diary.add-entry.enter-ingredients' | transloco"
+                [(ngModel)]="this.mealInput"
+                (keyup.enter)="addFoodEntry()"></ion-input>
+            </div>
+            <div class="metadata-end-wrapper" slot="end">
+              <ion-note color="primary" id="time">{{ this.mealTime | date: 'HH:mm' }}</ion-note>
+            </div>
+          </ion-item>
+        </ion-list>
+      </ion-card>
 
       <ion-popover trigger="time">
         <ng-template>
@@ -95,46 +98,47 @@
         </ng-template>
       </ion-popover>
 
-      <ion-list>
-        <ion-list-header>
+      <ion-card color="medium">
+        <ion-card-content>
           <ion-label><h1>{{ 'diary.add-entry.drinks' | transloco}}</h1></ion-label>
-        </ion-list-header>
+        </ion-card-content>
+        <ion-list>
+          <ion-item-sliding *ngFor="let item of addEntryVm.drinks">
+            <ion-item>
+              <ion-label>
+                <ion-text>{{ item.name }}</ion-text>
+              </ion-label>
+              <div class="metadata-end-wrapper" slot="end">
+                <ion-note color="accent">{{ item.quantity }}</ion-note>
+              </div>
+            </ion-item>
 
-        <ion-item-sliding *ngFor="let item of addEntryVm.drinks">
+            <ion-item-options>
+              <ion-item-option color="danger">
+                <ion-icon
+                  slot="icon-only"
+                  name="trash-outline"
+                  button
+                  (click)="addEntryStore.removeDrinksEntry(item.id)">
+                </ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+
           <ion-item>
-            <ion-label>
-              <ion-text>{{ item.name }}</ion-text>
-            </ion-label>
+            <div>
+              <ion-input
+                [placeholder]="'diary.add-entry.enter-drinks' | transloco"
+                [(ngModel)]="this.drinksInput"
+                (keyup.enter)="addDrinksEntry()"></ion-input>
+            </div>
             <div class="metadata-end-wrapper" slot="end">
-              <ion-note color="ion-color-light">{{ item.quantity }}</ion-note>
+              <ion-note id="quantity" color="primary">{{ this.drinksQuantity }}</ion-note>
             </div>
           </ion-item>
 
-          <ion-item-options>
-            <ion-item-option color="danger">
-              <ion-icon
-                slot="icon-only"
-                name="trash-outline"
-                button
-                (click)="addEntryStore.removeDrinksEntry(item.id)">
-              </ion-icon>
-            </ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
-
-        <ion-item>
-          <div>
-            <ion-input
-              [placeholder]="'diary.add-entry.enter-drinks' | transloco"
-              [(ngModel)]="this.drinksInput"
-             (keyup.enter)="addDrinksEntry()"></ion-input>
-          </div>
-          <div class="metadata-end-wrapper" slot="end">
-            <ion-note id="quantity" color="primary">{{ this.drinksQuantity }}</ion-note>
-          </div>
-        </ion-item>
-
-      </ion-list>
+        </ion-list>
+      </ion-card>
 
       <ion-popover trigger="quantity">
         <ng-template>
@@ -142,11 +146,10 @@
         </ng-template>
       </ion-popover>
 
-      <ion-item>
-        <div class="range-container">
+      <ion-card color="medium" >
+        <ion-card-content>
           <ion-label><h1>{{ 'diary.add-entry.stomach' | transloco }}</h1></ion-label>
           <ion-range
-            class="ion-padding"
             [ticks]="true"
             [snaps]="true"
             [min]="0"
@@ -156,14 +159,13 @@
             <ion-icon slot="start" name="sad-outline"></ion-icon>
             <ion-icon slot="end" name="happy-outline"></ion-icon>
           </ion-range>
-        </div>
-      </ion-item>
+        </ion-card-content>
+      </ion-card>
 
-      <ion-item>
-        <div class="range-container">
+      <ion-card color="medium">
+        <ion-card-content>
           <ion-label><h1>{{ 'diary.add-entry.sleep-quality' | transloco }}</h1></ion-label>
           <ion-range
-            class="ion-padding"
             [ticks]="true"
             [snaps]="true"
             [min]="0"
@@ -173,8 +175,8 @@
             <ion-icon slot="start" name="sad-outline"></ion-icon>
             <ion-icon slot="end" name="happy-outline"></ion-icon>
           </ion-range>
-        </div>
-      </ion-item>
+        </ion-card-content>
+      </ion-card>
     </ion-content>
 
   </ng-template>

@@ -3,13 +3,13 @@
 <app-add-entry/>
 
 <div class="xc" *ngIf="diaryView.selectedView === 'calendar'">
-<ion-datetime
+  <ion-datetime
     class="calendar"
-  presentation="date"
+    presentation="date"
     (ionChange)="diaryStore.dateSelected($event)"
     [firstDayOfWeek]="1"
-  [highlightedDates]="diaryView.dates">
-</ion-datetime>
+    [highlightedDates]="diaryView.dates">
+  </ion-datetime>
 </div>
 
 <ion-list [inset]="true" *ngIf="diaryView.selectedView === 'list'">

@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component, effect, inject, ViewChild, ViewContainerRef } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { IonButton, IonButtons, IonContent, IonDatetime, IonFooter, IonHeader, IonIcon, IonInput, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonListHeader, IonModal, IonNote, IonPopover, IonRange, IonText, IonTitle, IonToolbar, RangeCustomEvent } from "@ionic/angular/standalone";
+import { IonButton, IonButtons, IonCard, IonCardContent, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonList, IonModal, IonNote, IonPopover, IonRange, IonText, IonTitle, IonToolbar, RangeCustomEvent } from "@ionic/angular/standalone";
+import { TranslocoPipe } from "@jsverse/transloco";
 import { addIcons } from "ionicons";
 import { addOutline, closeOutline, happyOutline, sadOutline, trashOutline } from "ionicons/icons";
 import { DiaryStore } from "../../diary/store/diary.store";
 import { AddEntryStore } from "./store/add-entry.store";
-import { TranslocoPipe } from "@jsverse/transloco";
 
 @Component({
   selector: "app-add-entry",
@@ -14,7 +14,8 @@ import { TranslocoPipe } from "@jsverse/transloco";
   styleUrl: "./add-entry.component.scss",
   providers: [AddEntryStore],
   imports: [
-    IonFooter,
+    IonCard,
+    IonCardContent,
     TranslocoPipe,
     CommonModule,
     FormsModule,
@@ -34,7 +35,6 @@ import { TranslocoPipe } from "@jsverse/transloco";
     IonModal,
     IonTitle,
     IonToolbar,
-    IonListHeader,
     IonItemOptions,
     IonItemOption,
     IonItemSliding,
