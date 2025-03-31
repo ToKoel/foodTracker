@@ -63,8 +63,8 @@
           <div>
             <ion-input
               [placeholder]="'diary.add-entry.enter-ingredients' | transloco"
-              [(ngModel)]="this.mealInput"></ion-input>
-            <ion-button (click)="addFoodEntry()">{{ 'diary.add-entry.add' | transloco }}</ion-button>
+              [(ngModel)]="this.mealInput"
+              (keyup.enter)="addFoodEntry()"></ion-input>
           </div>
           <div class="metadata-end-wrapper" slot="end">
             <ion-note color="primary" id="time">{{ this.mealTime | date: 'HH:mm' }}</ion-note>
@@ -126,8 +126,8 @@
           <div>
             <ion-input
               [placeholder]="'diary.add-entry.enter-drinks' | transloco"
-              [(ngModel)]="this.drinksInput"></ion-input>
-            <ion-button (click)="addDrinksEntry()">{{ 'diary.add-entry.add' | transloco }}</ion-button>
+              [(ngModel)]="this.drinksInput"
+             (keyup.enter)="addDrinksEntry()"></ion-input>
           </div>
           <div class="metadata-end-wrapper" slot="end">
             <ion-note id="quantity" color="primary">{{ this.drinksQuantity }}</ion-note>
@@ -175,15 +175,7 @@
           </ion-range>
         </div>
       </ion-item>
-
-
     </ion-content>
-    <ion-footer>
-      <ion-button
-        class="ion-padding-bottom"
-        expand="block"
-        (click)="addEntryStore.saveChanges()">{{ 'diary.add-entry.save' | transloco }}</ion-button>
-</ion-footer>
 
   </ng-template>
 </ion-modal>

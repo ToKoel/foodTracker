@@ -32,7 +32,10 @@ export const DiaryStore = signalStore(
     saveDiaryEntry: () => patchState(store, saveDiaryEntry()),
     removeDiaryEntry: (id: number) => patchState(store, removeDiaryEntry(id)),
     openAddEntryModal: () => patchState(store, setAddEntryModalState(true)),
-    closeAddEntryModal: () => patchState(store, setAddEntryModalState(false)),
+    closeAddEntryModal: () => {
+      patchState(store, setAddEntryModalState(false));
+      patchState(store, saveDiaryEntry());
+    },
     selectItem: (diaryEntryId: number) => patchState(store, updateSelected(diaryEntryId)),
     setSleepQuality: (sleepQuality: number) => patchState(store, setSleepQuality(sleepQuality)),
     setStomachRating: (stomach: number) => patchState(store, setStomachPain(stomach)),
